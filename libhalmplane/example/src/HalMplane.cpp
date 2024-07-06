@@ -6,9 +6,11 @@
  */
 
 #include "HalMplane.h"
+#include <iostream>
 
 int halmplane_init()
 {
+    std::cout << "Halmplane_init() lading..." <<std::endl;
     return 0;
 }
 

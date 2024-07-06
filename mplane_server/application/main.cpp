@@ -15,6 +15,7 @@
 #include <functional>
 
 #include "Application.h"
+#include "wrapper.h"
 
 using namespace Mplane;
 
@@ -42,6 +43,10 @@ int main(int argc, const char** argv)
 
 	sigaction(SIGINT, &sa, NULL);
 
+	//Initialize the wrapper halmplane
+	wrapper_halmplane_init();
+
 	// Run the app
+
 	return app->run("Mplane O-RAN M-Plane", argc, argv) ;
 }

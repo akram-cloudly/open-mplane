@@ -271,6 +271,14 @@ include_directories(yang-manager-server/yang-model-handlers/inc)
 include_directories(yang-manager-server/yang-models/inc)
 include_directories(yang-manager-server/yang-sysrepo/inc)
 
+## wrapper_libhalmplane
+list(APPEND MPLANE_SERVER_SOURCES
+  wrapper_libhalmplane/src/wrapper.cpp
+  wrapper_libhalmplane/src/hal_loader.cpp
+)
+
+include_directories(wrapper_libhalmplane/inc)
+
 ## application
 list(APPEND MPLANE_SERVER_SOURCES
   application/Application/src/Application.cpp
@@ -293,12 +301,14 @@ find_library(SYSREPO-CPP sysrepo-cpp)
 find_library(TINYXML2 tinyxml2)
 find_library(YANG yang)
 find_library(YANG-CPP yang-cpp)
+find_library(DL dl)
 find_package(ZLIB REQUIRED)
 
 add_executable(mplane-server-app ${MPLANE_SERVER_SOURCES})
 
 target_link_libraries(mplane-server-app
   ${CRYPTO}
+  ${DL}
   ${HALMPLANE}
   ${PTHREAD}
   ${SSH}

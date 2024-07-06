@@ -67,6 +67,7 @@ elseif( "${CONTEXT}" STREQUAL "YOCTO")
 
   add_subdirectory(hal-common)
   include(${BOARD}/CMakeLists.txt)
+  include(hal-api/CMakeLists.txt)
   target_include_directories(halmplane PUBLIC hal-common/inc)
   target_include_directories(halmplane PUBLIC inc)
   install(
