@@ -24,7 +24,7 @@
 #include "YangHandlerSysrepo.h"
 #include "YangMgrServer.h"
 
-#include <MplaneInterfaces.h>
+#include <wrapper.h>
 
 namespace Mplane {
 

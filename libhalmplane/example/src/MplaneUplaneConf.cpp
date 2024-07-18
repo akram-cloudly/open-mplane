@@ -6,6 +6,7 @@
  */
 
 #include "MplaneUplaneConf.h"
+#include <iostream> 
 
 low_level_tx_endpoint_t tx_endpoint_1{
     .name = "endpoint_1",
@@ -60,6 +61,7 @@ halmplane_setUPlaneConfiguration(user_plane_configuration_t* uplane_cfg) {
 
 int
 halmplane_get_tx_array(const char* name, tx_array_t* tx_arrays) {
+  std::cout << "halmplane_get_tx_array loading..." << std::endl;
   return 0;
 }
 
@@ -70,17 +72,21 @@ halmplane_get_rx_array(const char* name, rx_array_t* rx_arrays) {
 
 const char**
 halmplane_get_tx_array_names() {
+  std::cout << "halmplane_get_tx_array_names() loading..." << std::endl;
   return 0;
 }
 
 const char**
 halmplane_get_rx_array_names() {
+  std::cout << "halmplane_get_rx_array_names() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_get_low_level_tx_endpoint(
     const char* name, low_level_tx_endpoint_t* tx_endpoints) {
+    std::cout << "halmplane_get_low_level_tx_endpoint() loading..." << std::endl;
+
   return 0;
 }
 
@@ -95,6 +101,8 @@ halmplane_get_low_level_tx_endpoints(
     low_level_tx_endpoint_t** tx_endpoints, int* n_endpoints) {
   *tx_endpoints = example_tx_endpoints;
   *n_endpoints = 2;
+  std::cout << "halmplane_get_low_level_tx_endpoints() loading..." << std::endl;
+
   return 0;
 }
 

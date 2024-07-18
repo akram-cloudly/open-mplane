@@ -8,7 +8,9 @@
 #ifndef __MPLANE_TYPES_H__
 #define __MPLANE_TYPES_H__
 
-typedef enum halmplane_error_e {
+extern "C"
+{
+  typedef enum halmplane_error_e {
   NONE = 0,
   UNIMPLEMENTED,
   UNAVAILABLE,
@@ -20,7 +22,8 @@ typedef enum halmplane_error_e {
 
 } halmplane_error_t;
 
-typedef double decimal64_t;
-typedef char* date_time_t;
+  typedef double decimal64_t;
+  typedef char* date_time_t;
+}
 
 #endif

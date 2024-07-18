@@ -34,7 +34,7 @@
 #include "INetopeerMonService.h"
 #include "YangMgrService.h"
 
-#include <HalMplane.h>
+#include <wrapper.h>
 
 using namespace Mplane;
 
@@ -70,6 +70,7 @@ YangServices::YangServices()
   // Register the YANG manager server Service
   registerServiceInsert(YangMgrService::singleton());
 
+  std::cout << "Yangservices loading....." << std::endl;
   halmplane_init();
 
   // YANG
@@ -92,5 +93,6 @@ YangServices::~YangServices() {}
 void
 YangServices::shutdown() {
   AppServices::shutdown();
+  wrapper_halmplane_exit();
   halmplane_exit();
 }

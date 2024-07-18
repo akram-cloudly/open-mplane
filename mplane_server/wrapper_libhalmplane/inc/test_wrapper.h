@@ -1,0 +1,36 @@
+#ifndef TEST_WRAPPER_H_
+#define TEST_WRAPPER_H_
+
+#include "MplaneInterfaces.h"
+// #include "MplaneProcessingElements.h"
+
+// sample ru_elements for to test test_MplaneProcessingElement apis
+
+// eth_flow_t example_eth_flow = {
+//     .ru_mac_address = "00:11:22:33:44:55",
+//     .vlan_id = 100,
+//     .o_du_mac_address = "66:77:88:99:AA:BB"
+// };
+
+// aliasmac_flow_t example_aliasmac_flow = {
+//     // Initialize fields as necessary
+// };
+// udpip_flow_t example_udpip_flow = {
+//     // Initialize fields as necessary
+// };
+// transport_flow_t example_transport_flow = {
+//     .interface_name = "eth0",
+//     .amac_flow = example_aliasmac_flow,
+//     .e_flow = example_eth_flow,
+//     .u_flow = example_udpip_flow
+// };
+// ru_elements_t example_ru_element = {
+//     .name = "RU1",
+//     .t_flow = example_transport_flow
+// };
+
+void test_MplaneInterfaces();
+void test_MplaneProcessingElement();
+void test_MplaneUplaneConf();
+
+#endif /* TEST_WRAPPER_H_ */

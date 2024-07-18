@@ -176,6 +176,7 @@ bool
 IetfInterfacesHandler::initialise() {
   // ------------------------------------------------------------------------
   // daisychain the initialisations
+  // std::cout << "Adding interfaces" << std::endl;
   // ------------------------------------------------------------------------
   if (!this->YangHandlerSysrepo::initialise())
     return false;
@@ -190,7 +191,17 @@ IetfInterfacesHandler::initialise() {
   auto numInterfaces = mConfig->getNumOfListEntries(
       "module-ietf-interfaces/container-interfaces/list-interface");
 
-  // Add an interface entry for each interface
+  std::cout << "ItefInterfaceHandler::Initialize() loading..." << std::endl;
+  // // Add an interface entry for each interface
+  std::string name = mConfig->getValue(
+        std::string(
+            "module-ietf-interfaces/container-interfaces/list-interface[") +
+        std::to_string(0) + "]/leaf-name");
+    halmplane_interface_update_(mInterfaces[name].get());
+    std::cout << "ItefInterfaceHandler::Initialize() loading..." << std::endl;
+
+
+  // std::cout << "For loop starting..." << std::endl;
   for (int i = 0; i < numInterfaces; i++) {
     std::string name = mConfig->getValue(
         std::string(
@@ -200,7 +211,7 @@ IetfInterfacesHandler::initialise() {
     createInterfaceListEntry(dataSte, i);
     // Add configuration data for physical interface
     addInterface(i);
-    halmplane_interface_update(mInterfaces[name].get());
+    halmplane_interface_update_(mInterfaces[name].get());
   }
 
   // ------------------------------------------------------------------------
@@ -247,9 +258,9 @@ IetfInterfacesHandler::valueChange(
 
   if (listName == "interface") {
     if (leaf == "description") {
-      halmplane_interface_update_description(index.c_str(), value.c_str());
+      halmplane_interface_update_description_(index.c_str(), value.c_str());
     } else if (leaf == "type") {
-      halmplane_interface_update_type(index.c_str(), value.c_str());
+      halmplane_interface_update_type_(index.c_str(), value.c_str());
     } else if (leaf == "enabled") {
       halmplane_interface_update_enabled(index.c_str(), value == "true");
     }

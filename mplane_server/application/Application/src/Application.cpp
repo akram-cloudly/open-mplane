@@ -63,10 +63,10 @@ Application::Application() :
 {
 	// Redirect stdout/stderr
 #ifndef OFF_TARGET
-	// cppcheck-suppress leakReturnValNotUsed
-	freopen(LOGFILE, "a", stdout) ;
-	// cppcheck-suppress leakReturnValNotUsed
-	freopen(LOGFILE, "a", stderr) ;
+	// // cppcheck-suppress leakReturnValNotUsed
+	// freopen(LOGFILE, "a", stdout) ;
+	// // cppcheck-suppress leakReturnValNotUsed
+	// freopen(LOGFILE, "a", stderr) ;
 #endif
 
 	// start timing the app startup time

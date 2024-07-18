@@ -15,6 +15,7 @@ private:
 public:
   Hal_Loader(const char* libname);
   void* get_function(const char* ftag);
+  void Hal_close();
 };
 
 #endif /* HAL_LOADER_H_ */

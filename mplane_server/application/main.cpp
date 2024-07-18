@@ -16,6 +16,8 @@
 
 #include "Application.h"
 #include "wrapper.h"
+#include "hal_loader.h"
+#include "test_wrapper.h"
 
 using namespace Mplane;
 
@@ -29,6 +31,14 @@ void sigintHandler(int signum) {
 /*!
  * \brief The first start point for the program
  */
+
+void test_wrapper_of_libhalmplane()
+{
+	test_MplaneInterfaces();
+	test_MplaneProcessingElement();	
+	test_MplaneUplaneConf();
+}
+
 int main(int argc, const char** argv)
 {
 	struct sigaction sa;
@@ -41,12 +51,12 @@ int main(int argc, const char** argv)
 	sigfillset(&sa.sa_mask);
 	sa.sa_flags = 0;
 
+	// std::cout << "create wrapper libhalmplane" << std::endl;
 	sigaction(SIGINT, &sa, NULL);
 
 	//Initialize the wrapper halmplane
 	wrapper_halmplane_init();
-
 	// Run the app
-
+	test_wrapper_of_libhalmplane();
 	return app->run("Mplane O-RAN M-Plane", argc, argv) ;
 }

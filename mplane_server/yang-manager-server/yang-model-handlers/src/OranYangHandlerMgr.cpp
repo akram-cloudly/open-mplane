@@ -24,6 +24,7 @@
 #include "OranProcessingElementHandler.h"
 #include "OranUplaneConfHandler.h"
 #include "OranUserMgmtHandler.h"
+#include <iostream> 
 
 using namespace Mplane;
 
@@ -54,6 +55,7 @@ IYangHandlerMgr::singleton() {
 OranYangHandlerMgr::OranYangHandlerMgr(
     std::shared_ptr<IYangModuleMgr> moduleMgr)
     : YangHandlerMgr(moduleMgr) {
+  std::cout << "OranYangHandlerMgr" << std::endl;
   registerHandler(std::make_shared<IetfInterfacesHandler>(moduleMgr));
   registerHandler(std::make_shared<IetfNetconfAcmHandler>(moduleMgr));
   registerHandler(std::make_shared<IetfNetconfServerHandler>(moduleMgr));
