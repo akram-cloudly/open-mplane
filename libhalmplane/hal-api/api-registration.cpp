@@ -51,7 +51,49 @@ extern "C"
     (*registered_functions)["int (*halmplane_get_low_level_tx_endpoint)(const char*, low_level_tx_endpoint_t*)"]
      = (void*)halmplane_get_low_level_tx_endpoint; 
     (*registered_functions)["int (*halmplane_get_low_level_tx_endpoints)(low_level_tx_endpoint_t**, int*)"]
-     = (void*)halmplane_get_low_level_tx_endpoints;    
+     = (void*)halmplane_get_low_level_tx_endpoints;
+    (*registered_functions)["int (*halmplane_get_rx_array)(const char*, rx_array_t*)"]
+     = (void*)halmplane_get_rx_array;
+    (*registered_functions)["const char** (*halmplane_get_rx_array_names)()"]
+     = (void*)halmplane_get_rx_array_names;  
+    (*registered_functions)["int (*halmplane_get_low_level_rx_endpoint)(const char*, low_level_rx_endpoint_t*)"]
+     = (void*)halmplane_get_low_level_rx_endpoint; 
+    (*registered_functions)["int (*halmplane_get_low_level_rx_endpoints)"
+    "(low_level_rx_endpoint_t**, int*)"]
+     = (void*)halmplane_get_low_level_rx_endpoints;
+    (*registered_functions)["int (*halmplane_tx_carrier_state_change)"
+    "(const char*, uint64_t, uint64_t, double, const char*, int)"]
+     = (void*)halmplane_tx_carrier_state_change;
+    (*registered_functions)["int (*halmplane_rx_carrier_state_change)"
+    "(const char*, uint64_t, uint64_t, double, const char*, int)"]
+     = (void*)halmplane_rx_carrier_state_change;
+    (*registered_functions)["int (*halmplane_setUPlaneConfiguration)"
+    "(user_plane_configuration_t*)"]
+     = (void*)halmplane_setUPlaneConfiguration; 
+    (*registered_functions)["int (*halmplane_update_tx_eaxc)"
+    "(const char*, e_axcid_t*)"]
+     = (void*)halmplane_update_tx_eaxc;
+    (*registered_functions)["int (*halmplane_update_rx_eaxc)"
+    "(const char*, e_axcid_t*)"]
+     = (void*)halmplane_update_rx_eaxc; 
+    (*registered_functions)["int (*halmplane_update_rx_endpoint_compression)"
+    "(const char*, compression_t*)"]
+     = (void*)halmplane_update_rx_endpoint_compression;  
+    (*registered_functions)["int (*halmplane_update_tx_endpoint_compression)"
+    "(const char*, compression_t*)"]
+     = (void*)halmplane_update_tx_endpoint_compression;  
+    (*registered_functions)["int (*halmplane_update_rx_endpoint_compression_dyn_config)"
+    "(const char*, dynamic_compression_configuration_t*)"]
+     = (void*)halmplane_update_rx_endpoint_compression_dyn_config; 
+    (*registered_functions)["int (*halmplane_update_tx_endpoint_compression_dyn_config)"
+    "(const char*, dynamic_compression_configuration_t*)"]
+     = (void*)halmplane_update_tx_endpoint_compression_dyn_config;
+    (*registered_functions)["int (*halmplane_register_rx_carrier_state_cb)"
+    "(halmplane_carrier_state_cb_t)"]
+     = (void*)halmplane_register_rx_carrier_state_cb; 
+    (*registered_functions)["int (*halmplane_register_tx_carrier_state_cb)"
+    "(halmplane_carrier_state_cb_t)"]
+     = (void*)halmplane_register_tx_carrier_state_cb; 
 
     return registered_functions;
   }

@@ -22,7 +22,7 @@
 
 #include "YangCarrierMgr.h"
 
-#include <MplaneUplaneConf.h>
+#include <wrapper.h>
 
 namespace Mplane {
 

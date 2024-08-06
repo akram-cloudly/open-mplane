@@ -56,17 +56,19 @@ low_level_tx_endpoint_t example_tx_endpoints[] = {tx_endpoint_1, tx_endpoint_2};
 
 int
 halmplane_setUPlaneConfiguration(user_plane_configuration_t* uplane_cfg) {
+    std::cout << "halmplane_setUPlaneConfiguration() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_get_tx_array(const char* name, tx_array_t* tx_arrays) {
-  std::cout << "halmplane_get_tx_array loading..." << std::endl;
+  std::cout << "halmplane_get_tx_array() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_get_rx_array(const char* name, rx_array_t* rx_arrays) {
+  std::cout << "halmplane_get_rx_array() loading..." << std::endl;
   return 0;
 }
 
@@ -93,6 +95,7 @@ halmplane_get_low_level_tx_endpoint(
 int
 halmplane_get_low_level_rx_endpoint(
     const char* name, low_level_rx_endpoint_t* rx_endpoints) {
+    std::cout << "halmplane_get_low_level_rx_endpoint() loading..." << std::endl;
   return 0;
 }
 
@@ -109,6 +112,7 @@ halmplane_get_low_level_tx_endpoints(
 int
 halmplane_get_low_level_rx_endpoints(
     low_level_rx_endpoint_t** rx_endpoints, int* n_endpoints) {
+    std::cout << "halmplane_get_low_level_rx_endpointse() loading..." << std::endl;
   return 0;
 }
 
@@ -120,6 +124,7 @@ halmplane_tx_carrier_state_change(
     double gain,
     const char* new_state,
     int do_apply) {
+    std::cout << "halmplane_tx_carrier_state_changee() loading..." << std::endl;
   return 0;
 }
 
@@ -131,49 +136,59 @@ halmplane_rx_carrier_state_change(
     double gain_correction,
     const char* new_state,
     int do_apply) {
+    std::cout << "halmplane_rx_carrier_state_changee() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_update_rx_eaxc(const char* endpoint_name, e_axcid_t* eaxc) {
+    std::cout << "halmplane_rx_carrier_state_changee() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_update_tx_eaxc(const char* endpoint_name, e_axcid_t* eaxc) {
+  std::cout << "halmplane_update_tx_eaxc() loading..." << std::endl;
+
   return 0;
 }
 
 int
 halmplane_update_rx_endpoint_compression(
     const char* endpoint_name, compression_t* compression) {
+  std::cout << "halmplane_update_rx_endpoint_compression() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_update_tx_endpoint_compression(
     const char* endpoint_name, compression_t* compression) {
+    std::cout << "halmplane_update_tx_endpoint_compression() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_update_rx_endpoint_compression_dyn_config(
     const char* endpoint_name, dynamic_compression_configuration_t* config) {
+    std::cout << "halmplane_update_rx_endpoint_compression_dyn_config() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_update_tx_endpoint_compression_dyn_config(
     const char* endpoint_name, dynamic_compression_configuration_t* config) {
+    std::cout << "halmplane_update_tx_endpoint_compression_dyn_config() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_register_rx_carrier_state_cb(halmplane_carrier_state_cb_t cb) {
+    std::cout << "halmplane_register_rx_carrier_state_cb() loading..." << std::endl;
   return 0;
 }
 
 int
 halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb) {
+    std::cout << "halmplane_register_tx_carrier_state_cb() loading..." << std::endl;
   return 0;
 }

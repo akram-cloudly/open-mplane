@@ -22,7 +22,7 @@
 #include "YangHandlerSysrepo.h"
 #include "YangMgrServer.h"
 
-#include <MplaneProcessingElements.h>
+#include <wrapper.h>
 
 namespace Mplane {
 

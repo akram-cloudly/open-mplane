@@ -4,13 +4,15 @@
 void test_MplaneInterfaces()
 {
     std::cout << "test_MplaneInterface loading..." << std::endl;
-    halmplane_interface_update_description_("name", "description");
-    halmplane_interface_update_type_("name", "type");
-    halmplane_interface_update_enabled_("name", "enabled");
-    halmplane_interface_update_l2_mtu_("name", 12);
-    halmplane_interface_update_vlan_tagging_("name",1);
-    halmplane_interface_update_base_interface_("name", "baseInterface");
-    halmplane_interface_update_mac_address_("name", "macAddress");
+    interface_t* interface;
+    _halmplane_interface_update(interface);
+    _halmplane_interface_update_description("name", "description");
+    _halmplane_interface_update_type("name", "type");
+    _halmplane_interface_update_enabled("name", "enabled");
+    _halmplane_interface_update_l2_mtu("name", 12);
+    _halmplane_interface_update_vlan_tagging("name",1);
+    _halmplane_interface_update_base_interface("name", "baseInterface");
+    _halmplane_interface_update_mac_address("name", "macAddress");
 }
 
 void test_MplaneProcessingElement()
@@ -42,7 +44,7 @@ void test_MplaneProcessingElement()
     };
 
     std::cout << std::endl << "test_MplaneProcessingElement is loading..." << std::endl;
-    halmplane_update_ru_element_(&example_ru_element);
+    _halmplane_update_ru_element(&example_ru_element);
 }
 
 void test_MplaneUplaneConf()
@@ -50,12 +52,38 @@ void test_MplaneUplaneConf()
     std::cout << std::endl << "test_MplaneUplaneConf loading..." << std::endl;
 
     tx_array_t tx_array;
+    rx_array_t rx_arrays;
+
     low_level_tx_endpoint_t tx_endpoint;
     low_level_tx_endpoint_t* tx_endpoints;
-    int n_endpoints;
 
-    halmplane_get_tx_array_("name", &tx_array);
-    halmplane_get_tx_array_names_();
-    halmplane_get_low_level_tx_endpoint_("name", &tx_endpoint);
-    halmplane_get_low_level_tx_endpoints(&tx_endpoints, &n_endpoints);
+    low_level_rx_endpoint_t rx_endpoint;
+    low_level_rx_endpoint_t* rx_endpoints;
+    int n_endpoints;
+    user_plane_configuration_t uplane_cfg;
+    const char *endpoint_name = "endpoint_name";
+    e_axcid_t eaxc;
+    compression_t compression;
+    dynamic_compression_configuration_t config;
+    halmplane_carrier_state_cb_t cb;
+    // int* n_endpoints
+
+    _halmplane_get_tx_array("name", &tx_array);
+    _halmplane_get_tx_array_names();
+    _halmplane_get_low_level_tx_endpoint("name", &tx_endpoint);
+    _halmplane_get_low_level_tx_endpoints(&tx_endpoints, &n_endpoints);
+    _halmplane_get_rx_array("name", &rx_arrays);
+    _halmplane_get_rx_array_names();
+    _halmplane_get_low_level_rx_endpoint("name", &rx_endpoint);
+    _halmplane_get_low_level_rx_endpoints(&rx_endpoints, &n_endpoints); 
+    _halmplane_tx_carrier_state_change("name", 0, 1, 2, "new_state", 1);    
+    _halmplane_rx_carrier_state_change("name", 0, 1, 2, "new_state", 1);
+    _halmplane_setUPlaneConfiguration(&uplane_cfg);
+    _halmplane_update_tx_eaxc(endpoint_name, &eaxc);
+    _halmplane_update_rx_endpoint_compression(endpoint_name, &compression);
+    _halmplane_update_tx_endpoint_compression(endpoint_name, &compression);
+    _halmplane_update_rx_endpoint_compression_dyn_config(endpoint_name, &config);
+    _halmplane_update_tx_endpoint_compression_dyn_config(endpoint_name, &config);
+    _halmplane_register_rx_carrier_state_cb(cb);
+    _halmplane_register_tx_carrier_state_cb(cb);
 }

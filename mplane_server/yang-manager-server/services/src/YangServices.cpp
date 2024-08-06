@@ -71,7 +71,7 @@ YangServices::YangServices()
   registerServiceInsert(YangMgrService::singleton());
 
   std::cout << "Yangservices loading....." << std::endl;
-  halmplane_init();
+  _halmplane_init();
 
   // YANG
   eventInfo("RRH get YANG manager server");
@@ -94,5 +94,5 @@ void
 YangServices::shutdown() {
   AppServices::shutdown();
   wrapper_halmplane_exit();
-  halmplane_exit();
+  _halmplane_exit();
 }

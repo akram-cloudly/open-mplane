@@ -119,9 +119,9 @@ OranUplaneConfHandler::initialise() {
 
   oranUplaneConfHandlerInstance = this;
 
-  halmplane_register_rx_carrier_state_cb(
+  _halmplane_register_rx_carrier_state_cb(
       &Mplane::OranUplaneConfHandler::rxCarrierStateCallbackWrapper);
-  halmplane_register_tx_carrier_state_cb(
+  _halmplane_register_tx_carrier_state_cb(
       &Mplane::OranUplaneConfHandler::txCarrierStateCallbackWrapper);
 
   return true;
@@ -403,7 +403,7 @@ OranUplaneConfHandler::handleActivate(
         paramValUInt64(carrierData, "center-of-channel-bandwidth");
     double gainCorrection = paramValDecimal64(carrierData, "gain-correction");
 
-    int ret = halmplane_rx_carrier_state_change(
+    int ret = _halmplane_rx_carrier_state_change(
         name.c_str(),
         chbw,
         center,
@@ -430,7 +430,7 @@ OranUplaneConfHandler::handleActivate(
         paramValUInt64(carrierData, "center-of-channel-bandwidth");
     double gain = paramValDecimal64(carrierData, "gain");
 
-    int ret = halmplane_tx_carrier_state_change(
+    int ret = _halmplane_tx_carrier_state_change(
         name.c_str(), chbw, center, gain, value.c_str(), phase == VALUE_APPLY);
     if (ret != 0) {
       return SR_ERR_INVAL_ARG;
