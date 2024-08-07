@@ -87,3 +87,9 @@ void test_MplaneUplaneConf()
     _halmplane_register_rx_carrier_state_cb(cb);
     _halmplane_register_tx_carrier_state_cb(cb);
 }
+
+void test_MplaneAlarms()
+{
+    halmplane_oran_alarm_cb_t callback;
+    _halmplane_registerOranAlarmCallback(callback);
+}

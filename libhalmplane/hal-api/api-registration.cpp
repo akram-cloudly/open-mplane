@@ -7,6 +7,7 @@
 #include <MplaneInterfaces.h> 
 #include "MplaneProcessingElements.h"
 #include "MplaneUplaneConf.h"
+#include "MplaneAlarms.h"
 
 extern "C"
 {
@@ -93,7 +94,14 @@ extern "C"
      = (void*)halmplane_register_rx_carrier_state_cb; 
     (*registered_functions)["int (*halmplane_register_tx_carrier_state_cb)"
     "(halmplane_carrier_state_cb_t)"]
-     = (void*)halmplane_register_tx_carrier_state_cb; 
+     = (void*)halmplane_register_tx_carrier_state_cb;
+    
+    //MplaneAlarms
+    (*registered_functions)["int (*halmplane_registerOranAlarmCallback)"
+    "(halmplane_oran_alarm_cb_t)"]
+     = (void*)halmplane_registerOranAlarmCallback;
+
+
 
     return registered_functions;
   }

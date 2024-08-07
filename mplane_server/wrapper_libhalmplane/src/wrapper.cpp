@@ -620,6 +620,26 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
   return 0; 
 }
 
+int _halmplane_registerOranAlarmCallback(halmplane_oran_alarm_cb_t callback) 
+{
+  capture_source_as_str(
+  int (*halmplane_registerOranAlarmCallback)(halmplane_oran_alarm_cb_t), ftag);
+  
+  halmplane_registerOranAlarmCallback = (int (*)
+  (halmplane_oran_alarm_cb_t))hal_loader->get_function(ftag);
+
+  if(halmplane_registerOranAlarmCallback)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_registerOranAlarmCallback(callback);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return 0; 
+}
+
 
 void wrapper_halmplane_exit()
 {

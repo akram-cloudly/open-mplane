@@ -37,6 +37,7 @@ void test_wrapper_of_libhalmplane()
 	test_MplaneInterfaces();
 	test_MplaneProcessingElement();	
 	test_MplaneUplaneConf();
+	test_MplaneAlarms();
 }
 
 int main(int argc, const char** argv)

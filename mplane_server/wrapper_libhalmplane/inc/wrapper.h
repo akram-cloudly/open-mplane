@@ -8,6 +8,7 @@
 #include "MplaneProcessingElements.h"
 #include "MplaneUplaneConf.h"
 #include "HalMplane.h"
+#include "MplaneAlarms.h"
 // 
 
 class Wrapper
@@ -96,6 +97,10 @@ int _halmplane_update_tx_endpoint_compression_dyn_config(
 int _halmplane_register_rx_carrier_state_cb(halmplane_carrier_state_cb_t cb);
 
 int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb);
+
+// MplaneAlarms
+int _halmplane_registerOranAlarmCallback(halmplane_oran_alarm_cb_t callback);
+
 
 #define capture_source_as_str(src, strname) src; const static char* strname = #src;
 

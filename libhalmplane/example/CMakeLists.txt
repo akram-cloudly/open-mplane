@@ -3,6 +3,7 @@ string(CONCAT SRC
   "src/MplaneProcessingElements.cpp;"
   "src/MplaneUplaneConf.cpp;"
   "src/HalMplane.cpp;"
+  "src/MplaneAlarms.cpp;"
 )
 include_directories(inc)
 

@@ -32,5 +32,6 @@
 void test_MplaneInterfaces();
 void test_MplaneProcessingElement();
 void test_MplaneUplaneConf();
+void test_MplaneAlarms();
 
 #endif /* TEST_WRAPPER_H_ */
