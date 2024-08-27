@@ -45,7 +45,7 @@ typedef struct ptp_config_s {
   uint8_t* accepted_block_classes;
   ptp_profile_t ptp_profile;
   struct {
-    multi_cast_mac_address_t multicast_mac_address;
+    multicast_mac_address_t multicast_mac_address;
     int16_t delay_asymmetry;
   } g_8275_1_config;
   struct {
@@ -141,10 +141,10 @@ typedef struct gnss_state_s {
   char* name;
   enum {
     SYNCHRONIZED,
-    ACQUIRING - SYNC,
-    ANTENNA - DISCONNECTED,
+    ACQUIRING_SYNC,
+    ANTENNA_DISCONNECTED,
     BOOTING,
-    ANTENNA - SHORT - CIRCUIT
+    ANTENNA_SHORT_CIRCUIT
   } gnss_sync_status;
   struct {
     uint8_t satellites_tracked;

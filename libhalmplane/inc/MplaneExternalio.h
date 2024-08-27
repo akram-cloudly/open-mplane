@@ -80,7 +80,7 @@ typedef struct external_io_s {
  *
  * @ingroup ExternalIOFunctions
  */
-halmplane_error_t halmplane_get_io_value(external_io_t* io);
+extern "C" halmplane_error_t halmplane_get_io_value(external_io_t* io);
 
 /**
  * @brief Sets the output of the port to the specified value.
@@ -92,6 +92,6 @@ halmplane_error_t halmplane_get_io_value(external_io_t* io);
  *
  * @ingroup ExternalIOFunctions
  */
-halmplane_error_t halmplane_set_io_value(output_setting_t* out_setting);
+extern "C" halmplane_error_t halmplane_set_io_value(output_setting_t* out_setting);
 
 #endif //__MPLANE_EXTERNAL_IO_H__

@@ -16,6 +16,7 @@ typedef struct MplanePerfMeasInfo
 } MplanePerfMeasInfo;
 
 int fb_oru_registerOranPerfMeasCallback(const halmplane_oran_perf_meas_cb_t callback);
+// int fb_oru_registerOranPerfMeasCallback();
 
 const halmplane_oran_perf_meas_cb_t get_perf_meas_cb_ptr(void);
 

@@ -93,6 +93,7 @@ elseif( "${CONTEXT}" STREQUAL "YOCTO")
       inc/MplaneFan.h
       inc/MplaneSync.h
       inc/HalMplane.h
+      inc/MplaneAld.h
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   )
 

@@ -640,6 +640,834 @@ int _halmplane_registerOranAlarmCallback(halmplane_oran_alarm_cb_t callback)
   return 0; 
 }
 
+//MplaneEcpri
+
+bool _halmplane_message5Enabled(void)
+{
+  capture_source_as_str(
+  bool (*halmplane_message5Enabled)(void), ftag);
+  
+  halmplane_message5Enabled = (bool (*)
+  (void))hal_loader->get_function(ftag);
+
+  if(halmplane_message5Enabled)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_message5Enabled();
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return 0;
+}
+
+//MplaneExternalio
+halmplane_error_t _halmplane_get_io_value(external_io_t* io)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_io_value)(external_io_t*), ftag);
+  
+  halmplane_get_io_value = (halmplane_error_t (*)
+  (external_io_t*))hal_loader->get_function(ftag);
+
+  if(halmplane_get_io_value)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_io_value(io);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_set_io_value(output_setting_t* out_setting)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_set_io_value)(output_setting_t*), ftag);
+  
+  halmplane_set_io_value = (halmplane_error_t (*)
+  (output_setting_t*))hal_loader->get_function(ftag);
+
+  if(halmplane_set_io_value)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_set_io_value(out_setting);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+int _halmplane_activateEpeMeasObjects(
+    epe_measurement_objects_t config, halmplane_epe_meas_cb_t cb)
+{
+  capture_source_as_str(
+  int (*halmplane_activateEpeMeasObjects)(epe_measurement_objects_t, halmplane_epe_meas_cb_t), ftag);
+  
+  halmplane_activateEpeMeasObjects = (int (*)
+  (epe_measurement_objects_t, halmplane_epe_meas_cb_t))hal_loader->get_function(ftag);
+
+  if(halmplane_activateEpeMeasObjects)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_activateEpeMeasObjects(config, cb);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+// int _halmplane_activateEpeMeasObjects(
+//     int config, int cb)
+// {
+//   capture_source_as_str(
+//   int (*halmplane_activateEpeMeasObjects)(int, int), ftag);
+  
+//   halmplane_activateEpeMeasObjects = (int (*)
+//   (int, int))hal_loader->get_function(ftag);
+
+//   if(halmplane_activateEpeMeasObjects)
+//   {
+//     std::cout << "wrapper " ;
+//     return halmplane_activateEpeMeasObjects(config, cb);
+//   }
+//   else 
+//   {
+//     std::cout <<"function does not exist." << std::endl;
+//   }
+//   return 0;  
+// }
+
+int _halmplane_registerOranPerfMeasCallback(halmplane_oran_perf_meas_cb_t callback)
+{
+capture_source_as_str(
+  int (*halmplane_registerOranPerfMeasCallback)(halmplane_oran_perf_meas_cb_t), ftag);
+  
+  halmplane_registerOranPerfMeasCallback = (int (*)
+  (halmplane_oran_perf_meas_cb_t))hal_loader->get_function(ftag);
+
+  if(halmplane_registerOranPerfMeasCallback)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_registerOranPerfMeasCallback(callback);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return 0;
+}
+
+int _halmplane_getRssi(uint8_t interface, double* rssiValue)
+{
+  capture_source_as_str(
+    int (*halmplane_getRssi)(uint8_t, double*), ftag);
+    
+    halmplane_getRssi = (int (*)
+    (uint8_t, double*))hal_loader->get_function(ftag);
+
+    if(halmplane_getRssi)
+    {
+      std::cout << "wrapper " ;
+      return halmplane_getRssi(interface, rssiValue);
+    }
+    else 
+    {
+      std::cout <<"function does not exist." << std::endl;
+    }
+    return 0;  
+}
+
+int _halmplane_configPerfMeasurementParams(
+    performance_measurement_params_t* config)
+{
+  capture_source_as_str(
+    int (*halmplane_configPerfMeasurementParams)(performance_measurement_params_t*), ftag);
+    
+    halmplane_configPerfMeasurementParams = (int (*)
+    (performance_measurement_params_t*))hal_loader->get_function(ftag);
+
+    if(halmplane_configPerfMeasurementParams)
+    {
+      std::cout << "wrapper " ;
+      return halmplane_configPerfMeasurementParams(config);
+    }
+    else 
+    {
+      std::cout <<"function does not exist." << std::endl;
+    }
+    return 0;
+}
+
+int _halmplane_activateTransceiverMeasObjects(
+    transceiver_measurement_objects_t config,
+    halmplane_transceiver_meas_cb_t cb)
+{
+  capture_source_as_str(
+    int (*halmplane_activateTransceiverMeasObjects)(transceiver_measurement_objects_t, halmplane_transceiver_meas_cb_t), ftag);
+    
+    halmplane_activateTransceiverMeasObjects = (int (*)
+    (transceiver_measurement_objects_t, halmplane_transceiver_meas_cb_t))hal_loader->get_function(ftag);
+
+    if(halmplane_activateTransceiverMeasObjects)
+    {
+      std::cout << "wrapper " ;
+      return halmplane_activateTransceiverMeasObjects(config, cb);
+    }
+    else 
+    {
+      std::cout <<"function does not exist." << std::endl;
+    }
+    return 0;
+}
+
+int _halmplane_activateRxWindowMeasObjects(
+    rx_window_measurement_objects_t config,
+    halmplane_rx_window_meas_cb_t cb)
+{
+  capture_source_as_str(
+    int (*halmplane_activateRxWindowMeasObjects)(rx_window_measurement_objects_t, halmplane_rx_window_meas_cb_t), ftag);
+    
+    halmplane_activateRxWindowMeasObjects = (int (*)
+    (rx_window_measurement_objects_t, halmplane_rx_window_meas_cb_t))hal_loader->get_function(ftag);
+
+    if(halmplane_activateRxWindowMeasObjects)
+    {
+      std::cout << "wrapper " ;
+      return halmplane_activateRxWindowMeasObjects(config, cb);
+    }
+    else 
+    {
+      std::cout <<"function does not exist." << std::endl;
+    }
+    return 0;
+}
+
+int _halmplane_activateTxMeasObjects(
+    const tx_measurement_objects_t config,
+    halmplane_tx_stats_meas_cb_t cb)
+{
+  capture_source_as_str(
+    int (*halmplane_activateTxMeasObjects)(tx_measurement_objects_t, halmplane_tx_stats_meas_cb_t), ftag);
+    
+    halmplane_activateTxMeasObjects = (int (*)
+    (tx_measurement_objects_t, halmplane_tx_stats_meas_cb_t))hal_loader->get_function(ftag);
+
+    if(halmplane_activateTxMeasObjects)
+    {
+      std::cout << "wrapper " ;
+      return halmplane_activateTxMeasObjects(config, cb);
+    }
+    else 
+    {
+      std::cout <<"function does not exist." << std::endl;
+    }
+    return 0;  
+}
+
+//MplaneHardware
+halmplane_error_t _halmplane_get_energysaving_state(hw_component_t *hw_comp)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_energysaving_state)(hw_component_t*), ftag);
+   
+  halmplane_get_energysaving_state = (halmplane_error_t (*)
+  (hw_component_t*))hal_loader->get_function(ftag);
+
+  if(halmplane_get_energysaving_state)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_energysaving_state(hw_comp);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;   
+}
+
+halmplane_error_t _halmplane_get_availability_type(hw_component_t* hw_comp)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_availability_type)(hw_component_t*), ftag);
+  
+  halmplane_get_availability_type = (halmplane_error_t (*)
+  (hw_component_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_availability_type)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_availability_type(hw_comp);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_get_label_content(hw_component_t* hw_comp)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_label_content)(hw_component_t*), ftag);
+  
+  halmplane_get_label_content = (halmplane_error_t (*)
+  (hw_component_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_label_content)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_label_content(hw_comp);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;   
+}
+
+halmplane_error_t _halmplane_get_product_code(hw_component_t* hw_comp)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_product_code)(hw_component_t*), ftag);
+  
+  halmplane_get_product_code = (halmplane_error_t (*)
+  (hw_component_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_product_code)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_product_code(hw_comp);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;
+}
+
+halmplane_error_t _halmplane_is_energy_saving_enabled(hw_component_t* hw_comp)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_is_energy_saving_enabled)(hw_component_t*), ftag);
+  
+  halmplane_is_energy_saving_enabled = (halmplane_error_t (*)
+  (hw_component_t*))hal_loader->get_function(ftag);
+  if(halmplane_is_energy_saving_enabled)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_is_energy_saving_enabled(hw_comp);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;
+}
+
+halmplane_error_t _halmplane_get_dying_gasp_support(hw_component_t* hw_comp)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_dying_gasp_support)(hw_component_t*), ftag);
+  
+  halmplane_get_dying_gasp_support = (halmplane_error_t (*)
+  (hw_component_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_dying_gasp_support)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_dying_gasp_support(hw_comp);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;
+}
+
+halmplane_error_t _halmplane_get_last_service_date(hw_component_t* hw_comp)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_last_service_date)(hw_component_t*), ftag);
+  
+  halmplane_get_last_service_date = (halmplane_error_t (*)
+  (hw_component_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_dying_gasp_support)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_last_service_date(hw_comp);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;
+}
+halmplane_error_t _halmplane_get_o_ran_name(hw_component_t* hw_comp)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_o_ran_name)(hw_component_t*), ftag);
+  
+  halmplane_get_o_ran_name = (halmplane_error_t (*)
+  (hw_component_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_dying_gasp_support)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_o_ran_name(hw_comp);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;
+}
+
+bool _halmplane_get_ietf_hardware(ietf_hardware_t* hw)
+{
+  capture_source_as_str(
+  bool (*halmplane_get_ietf_hardware)(ietf_hardware_t*), ftag);
+  
+  halmplane_get_ietf_hardware = (bool (*)
+  (ietf_hardware_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_ietf_hardware)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_ietf_hardware(hw);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;
+
+}
+
+int _halmplane_registerHwStateChange(
+    halmplane_notificationHwStateChange_cb_t cb)
+{
+  capture_source_as_str(
+  int (*halmplane_registerHwStateChange)(halmplane_notificationHwStateChange_cb_t), ftag);
+  
+  halmplane_registerHwStateChange = (int (*)
+  (halmplane_notificationHwStateChange_cb_t))hal_loader->get_function(ftag);
+  if(halmplane_registerHwStateChange)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_registerHwStateChange(cb);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+int _halmplane_registerHwStateOper(
+    halmplane_notificationHwStateOper_cb_t cb)
+{
+  capture_source_as_str(
+  int (*halmplane_registerHwStateOper)(halmplane_notificationHwStateOper_cb_t), ftag);
+  
+  halmplane_registerHwStateOper = (int (*)
+  (halmplane_notificationHwStateOper_cb_t))hal_loader->get_function(ftag);
+  if(halmplane_registerHwStateOper)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_registerHwStateOper(cb);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+//MplaneFan 
+halmplane_error_t _halmplane_get_fan_present_and_operating(
+    fan_state_t* fan_state)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_fan_present_and_operating)(fan_state_t*), ftag);
+  
+  halmplane_get_fan_present_and_operating = (halmplane_error_t (*)
+  (fan_state_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_fan_present_and_operating)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_fan_present_and_operating(fan_state);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_get_fan_name(
+    fan_state_t* fan_state)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_fan_name)(fan_state_t*), ftag);
+  
+  halmplane_get_fan_name = (halmplane_error_t (*)
+  (fan_state_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_fan_name)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_fan_name(fan_state);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_get_fan_location(
+    fan_state_t* fan_state)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_fan_location)(fan_state_t*), ftag);
+  
+  halmplane_get_fan_location = (halmplane_error_t (*)
+  (fan_state_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_fan_location)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_fan_location(fan_state);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_get_fan_vendor_code(
+    fan_state_t* fan_state)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_fan_vendor_code)(fan_state_t*), ftag);
+  
+  halmplane_get_fan_vendor_code = (halmplane_error_t (*)
+  (fan_state_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_fan_vendor_code)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_fan_vendor_code(fan_state);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_get_fan_speed(
+    fan_state_t* fan_state)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_fan_speed)(fan_state_t*), ftag);
+  
+  halmplane_get_fan_speed = (halmplane_error_t (*)
+  (fan_state_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_fan_speed)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_fan_speed(fan_state);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_get_fan_target_speed(
+    fan_state_t* fan_state)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_fan_target_speed)(fan_state_t*), ftag);
+  
+  halmplane_get_fan_target_speed = (halmplane_error_t (*)
+  (fan_state_t*))hal_loader->get_function(ftag);
+  if(halmplane_get_fan_target_speed)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_fan_target_speed(fan_state);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+//MplaneAntennaCalibrtion
+halmplane_error_t _halmplane_start_antenna_calibration(
+    const antenna_calibration_data_t* antenna_data)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_start_antenna_calibration)(const antenna_calibration_data_t*), ftag);
+  
+  halmplane_start_antenna_calibration = (halmplane_error_t (*)
+  (const antenna_calibration_data_t*))hal_loader->get_function(ftag);
+  if(halmplane_start_antenna_calibration)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_start_antenna_calibration(antenna_data);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;    
+}
+
+halmplane_error_t _halmplane_ald_get_counters(
+    const halmplane_ald_communication_output_t* ald_status)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_ald_get_counters)(const halmplane_ald_communication_output_t*), ftag);
+  
+  halmplane_ald_get_counters = (halmplane_error_t (*)
+  (const halmplane_ald_communication_output_t*))hal_loader->get_function(ftag);
+  if(halmplane_ald_get_counters)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_ald_get_counters(ald_status);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;   
+}
+
+halmplane_error_t _halmplane_ald_get_status(
+    const halmplane_ald_communication_output_t* ald_status)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_ald_get_status)(const halmplane_ald_communication_output_t*), ftag);
+  
+  halmplane_ald_get_status = (halmplane_error_t (*)
+  (const halmplane_ald_communication_output_t*))hal_loader->get_function(ftag);
+  if(halmplane_ald_get_status)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_ald_get_status(ald_status);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;   
+}
+
+halmplane_error_t _halmplane_ald_response(
+    halmplane_ald_communication_input_s* ald_req, uint16_t msg_size)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_ald_response)(halmplane_ald_communication_input_s*, uint16_t), ftag);
+  
+  halmplane_ald_response = (halmplane_error_t (*)
+  (halmplane_ald_communication_input_s*, uint16_t))hal_loader->get_function(ftag);
+  if(halmplane_ald_response)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_ald_response(ald_req, msg_size);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_ald_set_receive_mode(
+    halmplane_ald_communication_input_s* ald_req, uint16_t msg_size)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_ald_set_receive_mode)(halmplane_ald_communication_input_s*, uint16_t), ftag);
+  
+  halmplane_ald_set_receive_mode = (halmplane_error_t (*)
+  (halmplane_ald_communication_input_s*, uint16_t))hal_loader->get_function(ftag);
+  if(halmplane_ald_set_receive_mode)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_ald_set_receive_mode(ald_req, msg_size);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;   
+}
+
+halmplane_error_t _halmplane_apply_beamforming_file(char* filepath)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_apply_beamforming_file)(char*), ftag);
+  
+  halmplane_apply_beamforming_file = (halmplane_error_t (*)
+  (char*))hal_loader->get_function(ftag);
+
+  if(halmplane_apply_beamforming_file)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_apply_beamforming_file(filepath);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE; 
+}
+
+halmplane_error_t _halmplane_set_ptp_config(const ptp_config_t ptp_config)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_set_ptp_config)(const ptp_config_t), ftag);
+  
+  halmplane_set_ptp_config = (halmplane_error_t (*)
+  (const ptp_config_t))hal_loader->get_function(ftag);
+
+  if(halmplane_set_ptp_config)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_set_ptp_config(ptp_config);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE; 
+}
+
+halmplane_error_t _halmplane_get_ptp_status(ptp_status_t* ptp_status)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_ptp_status)(ptp_status_t*), ftag);
+  
+  halmplane_get_ptp_status = (halmplane_error_t (*)
+  (ptp_status_t*))hal_loader->get_function(ftag);
+
+  if(halmplane_get_ptp_status)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_ptp_status(ptp_status);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE; 
+}
+
+halmplane_error_t _halmplane_set_synce_config(const synce_config_t synce_config)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_set_synce_config)(const synce_config_t), ftag);
+  
+  halmplane_set_synce_config = (halmplane_error_t (*)
+  (const synce_config_t))hal_loader->get_function(ftag);
+
+  if(halmplane_set_synce_config)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_set_synce_config(synce_config);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;   
+}
+
+halmplane_error_t _halmplane_get_synce_status(synce_status_t* synce_status)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_synce_status)(synce_status_t*), ftag);
+  
+  halmplane_get_synce_status = (halmplane_error_t (*)
+  (synce_status_t*))hal_loader->get_function(ftag);
+
+  if(halmplane_get_synce_status)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_synce_status(synce_status);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_set_gnss_config(const gnss_config_t gnss_config)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_set_gnss_config)(const gnss_config_t), ftag);
+  
+  halmplane_set_gnss_config = (halmplane_error_t (*)
+  (const gnss_config_t))hal_loader->get_function(ftag);
+
+  if(halmplane_set_gnss_config)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_set_gnss_config(gnss_config);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;  
+}
+
+halmplane_error_t _halmplane_get_gnss_status(gnss_status_t* gnss_status)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_get_gnss_status)(gnss_status_t*), ftag);
+  
+  halmplane_get_gnss_status = (halmplane_error_t (*)
+  (gnss_status_t*))hal_loader->get_function(ftag);
+
+  if(halmplane_get_gnss_status)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_gnss_status(gnss_status);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;    
+}
+
+//MplaneDelayMgmt
+
+int _halmplane_setDUToRUDelayMgmnt(o_ru_delay_management_s* ru_delay_mgmt)
+{
+  capture_source_as_str(
+  int (*halmplane_setDUToRUDelayMgmnt)(o_ru_delay_management_s*), ftag);
+  
+  halmplane_setDUToRUDelayMgmnt = (int (*)
+  (o_ru_delay_management_s*))hal_loader->get_function(ftag);
+
+  if(halmplane_setDUToRUDelayMgmnt)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_setDUToRUDelayMgmnt(ru_delay_mgmt);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;    
+}
 
 void wrapper_halmplane_exit()
 {

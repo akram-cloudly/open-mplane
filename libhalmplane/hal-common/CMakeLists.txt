@@ -1,12 +1,12 @@
 include_directories(inc)
 
 if( "${CONTEXT}" STREQUAL "YOCTO")
-  if( "${BOARD}" STREQUAL "zcu111")
+  # if( "${BOARD}" STREQUAL "zcu111")
     string(CONCAT SRC
       "hal-common/fb-oru/FbOruPerformanceMgmt.cpp;"
     )
     target_sources(halmplane PRIVATE ${SRC})
-  endif()
+  # endif()
 else()
   if( "${BOARD}" STREQUAL "zcu111")
     string(CONCAT SRC

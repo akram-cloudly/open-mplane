@@ -8,6 +8,16 @@
 #include "MplaneProcessingElements.h"
 #include "MplaneUplaneConf.h"
 #include "MplaneAlarms.h"
+#include "MplaneEcpri.h"
+#include "MplaneExternalio.h"
+#include "MplanePerformanceMgmt.h"
+#include "MplaneHardware.h"
+#include "MplaneFan.h"
+#include "MplaneAntennaCalibration.h"
+#include "MplaneAld.h"
+#include "MplaneBeamforming.h"
+#include "MplaneSync.h"
+#include "MplaneDelayMgmt.h"
 
 extern "C"
 {
@@ -101,7 +111,143 @@ extern "C"
     "(halmplane_oran_alarm_cb_t)"]
      = (void*)halmplane_registerOranAlarmCallback;
 
+    //MplaneEcpri
+    (*registered_functions)["bool (*halmplane_message5Enabled)(void)"]
+     = (void*)halmplane_message5Enabled;
 
+    // //MplaneExternalio
+    (*registered_functions)["halmplane_error_t (*halmplane_get_io_value)"
+    "(external_io_t*)"]
+     = (void*)halmplane_get_io_value;
+    (*registered_functions)["halmplane_error_t (*halmplane_set_io_value)"
+    "(output_setting_t*)"]
+     = (void*)halmplane_set_io_value;
+
+    
+    // (*registered_functions)["halmplane_error_t (*halmplane_update_ru_element)"
+    // "(ru_elements_t*)"]
+    //  = (void*)halmplane_update_ru_element;
+
+    //MplanePerformanceMgmt
+    (*registered_functions)["int (*halmplane_activateEpeMeasObjects)"
+    "(epe_measurement_objects_t, halmplane_epe_meas_cb_t)"]
+     = (void*)halmplane_activateEpeMeasObjects;
+    (*registered_functions)["int (*halmplane_registerOranPerfMeasCallback)"
+    "(halmplane_oran_perf_meas_cb_t)"]
+     = (void*)halmplane_registerOranPerfMeasCallback;
+
+    (*registered_functions)["int (*halmplane_getRssi)"
+    "(uint8_t, double*)"]
+     = (void*)halmplane_getRssi;    
+    
+    (*registered_functions)["int (*halmplane_configPerfMeasurementParams)"
+    "(performance_measurement_params_t*)"]
+     = (void*)halmplane_configPerfMeasurementParams;
+    (*registered_functions)["int (*halmplane_activateTransceiverMeasObjects)"
+    "(transceiver_measurement_objects_t, halmplane_transceiver_meas_cb_t)"]
+     = (void*)halmplane_activateTransceiverMeasObjects;
+    (*registered_functions)["int (*halmplane_activateRxWindowMeasObjects)"
+    "(rx_window_measurement_objects_t, halmplane_rx_window_meas_cb_t)"]
+     = (void*)halmplane_activateRxWindowMeasObjects;
+    (*registered_functions)["int (*halmplane_activateTxMeasObjects)"
+    "(tx_measurement_objects_t, halmplane_tx_stats_meas_cb_t)"]
+     = (void*)halmplane_activateTxMeasObjects;
+    
+    //MplaneHardware
+    (*registered_functions)["halmplane_error_t (*halmplane_get_energysaving_state)"
+    "(hw_component_t*)"]
+     = (void*)halmplane_get_energysaving_state;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_availability_type)"
+    "(hw_component_t*)"]
+     = (void*)halmplane_get_availability_type;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_label_content)"
+    "(hw_component_t*)"]
+     = (void*)halmplane_get_label_content;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_product_code)"
+    "(hw_component_t*)"]
+     = (void*)halmplane_get_product_code;
+    (*registered_functions)["halmplane_error_t (*halmplane_is_energy_saving_enabled)"
+    "(hw_component_t*)"]
+     = (void*)halmplane_is_energy_saving_enabled;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_dying_gasp_support)"
+    "(hw_component_t*)"]
+     = (void*)halmplane_get_dying_gasp_support;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_last_service_date)"
+    "(hw_component_t*)"]
+     = (void*)halmplane_get_last_service_date;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_o_ran_name)"
+    "(hw_component_t*)"]
+     = (void*)halmplane_get_o_ran_name;
+    (*registered_functions)["bool (*halmplane_get_ietf_hardware)(ietf_hardware_t*)"]
+     = (void*)halmplane_get_ietf_hardware;
+    (*registered_functions)["int (*halmplane_registerHwStateChange)"
+    "(halmplane_notificationHwStateChange_cb_t)"]
+     = (void*)halmplane_registerHwStateChange;
+    (*registered_functions)["int (*halmplane_registerHwStateOper)"
+    "(halmplane_notificationHwStateOper_cb_t)"]
+     = (void*)halmplane_registerHwStateOper;
+
+    //MplaneFan
+    (*registered_functions)["halmplane_error_t (*halmplane_get_fan_present_and_operating)"
+    "(fan_state_t*)"]
+     = (void*)halmplane_get_fan_present_and_operating;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_fan_name)"
+    "(fan_state_t*)"]
+     = (void*)halmplane_get_fan_name;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_fan_location)"
+    "(fan_state_t*)"]
+     = (void*)halmplane_get_fan_location;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_fan_vendor_code)"
+    "(fan_state_t*)"]
+     = (void*)halmplane_get_fan_vendor_code;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_fan_speed)"
+    "(fan_state_t*)"]
+     = (void*)halmplane_get_fan_vendor_code;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_fan_target_speed)"
+    "(fan_state_t*)"]
+     = (void*)halmplane_get_fan_target_speed;
+    
+    //MplaneAntennaCalibration
+    (*registered_functions)["halmplane_error_t (*halmplane_start_antenna_calibration)"
+    "(const antenna_calibration_data_t*)"]
+     = (void*)halmplane_start_antenna_calibration;
+    
+    //MplaneAld
+    (*registered_functions)["halmplane_error_t (*halmplane_ald_get_counters)"
+    "(const halmplane_ald_communication_output_t*)"]
+     = (void*)halmplane_ald_get_counters;
+    (*registered_functions)["halmplane_error_t (*halmplane_ald_get_status)"
+    "(const halmplane_ald_communication_output_t*)"]
+     = (void*)halmplane_ald_get_status; 
+    (*registered_functions)["halmplane_error_t (*halmplane_ald_response)"
+    "(halmplane_ald_communication_input_s*, uint16_t)"]
+     = (void*)halmplane_ald_response;  
+    (*registered_functions)["halmplane_error_t (*halmplane_ald_set_receive_mode)"
+    "(halmplane_ald_communication_input_s*, uint16_t)"]
+     = (void*)halmplane_ald_set_receive_mode;  
+
+     //MplaneBeamforming    
+    (*registered_functions)["halmplane_error_t (*halmplane_apply_beamforming_file)"
+    "(char*)"]= (void*)halmplane_apply_beamforming_file;
+
+    //MplaneSync
+    (*registered_functions)["halmplane_error_t (*halmplane_set_ptp_config)"
+    "(const ptp_config_t)"]= (void*)halmplane_set_ptp_config;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_ptp_status)"
+    "(ptp_status_t*)"]= (void*)halmplane_get_ptp_status;
+    (*registered_functions)["halmplane_error_t (*halmplane_set_synce_config)"
+    "(const synce_config_t)"]= (void*)halmplane_set_synce_config;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_synce_status)"
+    "(synce_status_t*)"]= (void*)halmplane_get_synce_status;
+    (*registered_functions)["halmplane_error_t (*halmplane_set_gnss_config)"
+    "(const gnss_config_t)"]= (void*)halmplane_set_gnss_config;
+    (*registered_functions)["halmplane_error_t (*halmplane_get_gnss_status)"
+    "(gnss_status_t*)"]= (void*)halmplane_get_gnss_status; 
+
+    //MplaneDelayMgmt
+    (*registered_functions)["int (*halmplane_setDUToRUDelayMgmnt)"
+    "(o_ru_delay_management_s*)"]= (void*)halmplane_setDUToRUDelayMgmnt; 
+       
 
     return registered_functions;
   }

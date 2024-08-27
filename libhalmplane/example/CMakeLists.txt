@@ -4,6 +4,16 @@ string(CONCAT SRC
   "src/MplaneUplaneConf.cpp;"
   "src/HalMplane.cpp;"
   "src/MplaneAlarms.cpp;"
+  "src/MplaneEcpri.cpp;"
+  "src/MplanePerformanceMgmt.cpp;"
+  "src/MplaneExternalio.cpp;"
+  "src/MplaneHardware.cpp;"
+  "src/MplaneFan.cpp;"
+  "src/MplaneAntennaCalibration.cpp;"
+  "src/MplaneAld.cpp;"
+  "src/MplaneBeamforming.cpp;"
+  "src/MplaneSync.cpp;"
+  "src/MplaneDelayMgmt.cpp"
 )
 include_directories(inc)
 

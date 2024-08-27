@@ -8,6 +8,8 @@
 #ifndef __MPLANE_PERFORMANCE_MGMT_H__
 #define __MPLANE_PERFORMANCE_MGMT_H__
 
+#define MAX_REPORTING_TYPE 100
+
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -31,6 +33,10 @@ typedef struct transceiver_measurement_result_value_s {
   decimal64_t value;
   date_time_t time;
 } transceiver_measurement_result_value_t;
+
+typedef enum transceiver_object_unit_e {
+  PORT_NUMBER = 0,
+} transceiver_object_unit_t;
 
 typedef struct transceiver_measurement_result_s {
   transceiver_object_unit_t object_unit;
@@ -66,14 +72,17 @@ typedef enum transceiver_report_info_e {
   REPORT_INFO_MAX_REPORTING_TYPE,
 } transceiver_report_info_t;
 
-typedef enum transceiver_object_unit_e {
-  PORT_NUMBER = 0,
-} transceiver_object_unit_t;
 
 typedef enum function_e {
   FUNCTION_RAW = 0,
   FUNCTION_LOG_10,
 } function_t;
+
+typedef enum object_unit_e {
+  OBJECT_UNIT_RU = 0,
+  OBJECT_UNIT_TRANSPORT,
+  OBJECT_UNIT_EAXC_ID
+} object_unit_t;
 
 typedef struct transceiver_measurement_objects_s {
   transceiver_measurement_object_t measurement_object;
@@ -137,7 +146,7 @@ typedef struct rx_window_measurement_result_s {
   rx_window_object_name_count_t ru_count;
   rx_window_object_name_count_t* transport_count;
   rx_window_object_name_count_t* eaxc_id_count;
-  uint64_t rx_window_measurement_object_t measurement_object;
+  rx_window_measurement_object_t measurement_object;
 
 } rx_window_measurement_result_t;
 
@@ -158,11 +167,6 @@ typedef enum tx_measurement_objects_enum_e {
   TX_TOTAL_C,
 } tx_measurement_objects_enum_t;
 
-typedef enum object_unit_e {
-  OBJECT_UNIT_RU = 0,
-  OBJECT_UNIT_TRANSPORT,
-  OBJECT_UNIT_EAXC_ID
-} object_unit_t;
 
 typedef enum tx_measurement_report_info_e {
   TX_MEASUREMENT_REPORT_INFO_COUNT = 0
@@ -180,13 +184,34 @@ typedef struct tx_measured_result_s {
   uint64_t count;
 } tx_measured_result_t;
 
+typedef struct tx_measurement_object_unit_t
+{
+
+}tx_measurement_object_unit_t;
+
+typedef struct tx_measured_results_t
+{
+
+}tx_measured_results_t;
+
+typedef struct object_ru_unit_s {
+  char* name;
+  uint64_t count;
+} object_ru_unit_t;
+
+typedef struct object_eaxc_unit_s {
+  uint16_t eaxc_id;
+  uint64_t count;
+  char* name;
+} object_eaxc_unit_t;
+
 typedef struct tx_measurement_result_s {
   tx_measurement_object_unit_t object_unit;
   union {
     object_ru_unit_t ru_object_stats;
     tx_measured_results_t* tx_meas_results;
     object_eaxc_unit_t* eaxc_meas_results;
-  }
+  };
 } tx_measurement_result_t;
 
 typedef struct tx_stats_s {
@@ -230,21 +255,12 @@ typedef struct epe_measurement_results_s {
   epe_measurement_t* meas_results;
 } epe_measurement_results_t;
 
-typedef struct object_ru_unit_s {
-  char* name;
-  uint64_t count;
-} object_ru_unit_t;
 
 typedef struct object_transport_unit_s {
   char* name;
   uint64_t count;
 } object_transport_unit_t;
 
-typedef struct object_eaxc_unit_s {
-  uint16_t eaxc_id;
-  uint64_t count;
-  char* name;
-} object_eaxc_unit_t;
 
 typedef struct performance_measurement_params_s {
   uint16_t transceiver_measurement_interval;
@@ -255,37 +271,38 @@ typedef struct performance_measurement_params_s {
 } performance_measurement_params_t;
 
 int halmplane_configPerfMeasurementParams(
-    struct performance_measurement_params_t* config);
+    performance_measurement_params_t* config);
 
 // Configure each measurement object and register call backs for various
 // measurement objects.
 
 // Transceiver measurement objects
 typedef void (*halmplane_transceiver_meas_cb_t)(
-    const struct transceiver_stats_t* meas_result);
+    const transceiver_stats_t* meas_result);
 int halmplane_activateTransceiverMeasObjects(
-    struct transceiver_measurement_objects_t config,
+    transceiver_measurement_objects_t config,
     halmplane_transceiver_meas_cb_t cb);
 
 // Rx Window Measurement Objects
 typedef void (*halmplane_rx_window_meas_cb_t)(
-    const struct rx_window_measurement_objects_t* perf_meas);
+    const rx_window_measurement_objects_t* perf_meas);
 int halmplane_activateRxWindowMeasObjects(
-    struct rx_window_measurement_objects_t config,
+    rx_window_measurement_objects_t config,
     halmplane_rx_window_meas_cb_t cb);
 
 // TX Measurement Objects, results are Tx_stats
 typedef void (*halmplane_tx_stats_meas_cb_t)(const struct tx_stats_s* stats);
 int halmplane_activateTxMeasObjects(
-    const struct tx_measurement_objects_t config,
+    const tx_measurement_objects_t config,
     halmplane_tx_stats_meas_cb_t cb);
 
-// EPE Measurement Objects
+// // EPE Measurement Objects
 typedef void (*halmplane_epe_meas_cb_t)(
-    const struct epe_measurement_results_t* perf_meas);
+    const epe_measurement_results_t* perf_meas);
 int halmplane_activateEpeMeasObjects(
-    struct epe_measurement_objects_t config, halmplane_epe_meas_cb_t cb);
+    epe_measurement_objects_t config, halmplane_epe_meas_cb_t cb);
 
-#endif
+// extern "C" int halmplane_activateEpeMeasObjects(
+//     int config, int cb);
 
 #endif // __MPLANE_PERFORMANCE_MGMT_H__

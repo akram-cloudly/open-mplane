@@ -38,6 +38,15 @@ void test_wrapper_of_libhalmplane()
 	test_MplaneProcessingElement();	
 	test_MplaneUplaneConf();
 	test_MplaneAlarms();
+	test_MplaneEcpri();
+	test_MplaneExternalio();
+	test_MplanePerformanceMgmt();
+	test_MplaneHardwae();
+	test_MplaneFan();
+	test_MplaneAntennaCalibration();
+	test_MplaneAld();
+	test_MplaneSync();
+	test_MplaneDelayMgmt();
 }
 
 int main(int argc, const char** argv)
@@ -52,7 +61,7 @@ int main(int argc, const char** argv)
 	sigfillset(&sa.sa_mask);
 	sa.sa_flags = 0;
 
-	// std::cout << "create wrapper libhalmplane" << std::endl;
+	std::cout << "create wrapper libhalmplane" << std::endl;
 	sigaction(SIGINT, &sa, NULL);
 
 	//Initialize the wrapper halmplane

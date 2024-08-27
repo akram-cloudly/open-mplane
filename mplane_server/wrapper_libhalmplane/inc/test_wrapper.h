@@ -33,5 +33,16 @@ void test_MplaneInterfaces();
 void test_MplaneProcessingElement();
 void test_MplaneUplaneConf();
 void test_MplaneAlarms();
+void test_MplaneEcpri();
+void test_MplaneExternalio();
+void test_MplanePerformanceMgmt();
+void test_MplaneHardwae();
+void test_MplaneFan();
+void test_MplaneAntennaCalibration();
+void test_MplaneAld();
+void test_MplaneBeamforming();
+void test_MplaneSync();
+void test_MplaneDelayMgmt();
+
 
 #endif /* TEST_WRAPPER_H_ */

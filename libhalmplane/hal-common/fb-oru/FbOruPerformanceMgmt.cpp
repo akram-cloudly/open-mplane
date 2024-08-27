@@ -6,10 +6,11 @@
  */
 
 #include "FbOruPerformanceMgmt.h"
-#include "IMeasRssi.h"
+#include <iostream> 
+// #include "IMeasRssi.h"
 
-using Mplane::IMeasRssi;
-using Mplane::Power;
+// using Mplane::IMeasRssi;
+// using Mplane::Power;
 
 MplanePerfMeasInfo fb_oru_perfMeasInfo;
 
@@ -28,12 +29,12 @@ int fb_oru_getRssi (uint8_t interface, double *rssiValue) {
 		return -1;
 	}
 
-   	std::shared_ptr<IMeasRssi> rxRssi(IMeasRssi::getInterface(interface));
-    if (!rxRssi) {
-        return -1;
-	}
+   	// std::shared_ptr<IMeasRssi> rxRssi(IMeasRssi::getInterface(interface));
+    // if (!rxRssi) {
+    //     return -1;
+	// }
 
-    Power rssi (rxRssi->getRssi());
-	*rssiValue = rssi.get();
+    // Power rssi (rxRssi->getRssi());
+	// *rssiValue = rssi.get();
 	return 0;
 }
