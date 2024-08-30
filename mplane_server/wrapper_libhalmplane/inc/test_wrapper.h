@@ -43,6 +43,7 @@ void test_MplaneAld();
 void test_MplaneBeamforming();
 void test_MplaneSync();
 void test_MplaneDelayMgmt();
-
+void test_MplaneModuleCapability();
+void test_MplaneSupervision();
 
 #endif /* TEST_WRAPPER_H_ */

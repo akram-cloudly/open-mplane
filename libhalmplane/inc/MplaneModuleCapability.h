@@ -12,6 +12,7 @@
 #include <stdint.h>
 
 #include "MplaneTypes.h"
+#include "MplaneCompression.h"
 
 #define SUPPORT_FOR_DL_FIELDS          \
   uint64_t max_supported_frequency_dl; \

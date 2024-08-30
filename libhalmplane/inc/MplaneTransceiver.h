@@ -4,6 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+#include <stdint.h>
 
 #ifndef __MPLANE_TRANSCEIVER_H__
 #define __MPLANE_TRANSCEIVER_H__

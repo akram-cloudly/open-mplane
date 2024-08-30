@@ -1469,6 +1469,69 @@ int _halmplane_setDUToRUDelayMgmnt(o_ru_delay_management_s* ru_delay_mgmt)
   return NONE;    
 }
 
+//MplaneModuleCapability
+
+int _halmplane_setDUToRUModuleCapability(module_capability_t* mod_capability)
+{
+  capture_source_as_str(
+  int (*halmplane_setDUToRUModuleCapability)(module_capability_t*), ftag);
+  
+  halmplane_setDUToRUModuleCapability = (int (*)
+  (module_capability_t*))hal_loader->get_function(ftag);
+
+  if(halmplane_setDUToRUModuleCapability)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_setDUToRUModuleCapability(mod_capability);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE;    
+}
+
+uint32_t _halmplane_get_cu_supervison_interval(void)
+{
+  capture_source_as_str(
+  uint32_t (*halmplane_get_cu_supervison_interval)(void), ftag);
+  
+  halmplane_get_cu_supervison_interval = (uint32_t (*)
+  (void))hal_loader->get_function(ftag);
+
+  if(halmplane_get_cu_supervison_interval)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_cu_supervison_interval();
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE; 
+}
+
+uint32_t _halmplane_set_cu_supervison_interval(
+    uint32_t cu_monitoring_interval)
+{
+  capture_source_as_str(
+  uint32_t (*halmplane_set_cu_supervison_interval)(uint32_t), ftag);
+  
+  halmplane_set_cu_supervison_interval = (uint32_t (*)
+  (uint32_t))hal_loader->get_function(ftag);
+
+  if(halmplane_set_cu_supervison_interval)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_set_cu_supervison_interval(cu_monitoring_interval);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE; 
+}
+
 void wrapper_halmplane_exit()
 {
   hal_loader->Hal_close();

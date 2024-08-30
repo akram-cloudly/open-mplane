@@ -220,3 +220,17 @@ void test_MplaneDelayMgmt()
 
     _halmplane_setDUToRUDelayMgmnt(ru_delay_mgmt);
 }
+
+void test_MplaneModuleCapability()
+{
+  std::cout << "test_MplaneModuleCapability..." << std::endl;
+  module_capability_t* mod_capability;
+  _halmplane_setDUToRUModuleCapability(mod_capability);
+}
+
+void test_MplaneSupervision()
+{
+    std::cout << "test_MplaneSupervision..." << std::endl;
+    _halmplane_get_cu_supervison_interval();
+    _halmplane_set_cu_supervison_interval(0);
+}

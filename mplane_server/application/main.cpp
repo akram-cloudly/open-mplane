@@ -47,6 +47,8 @@ void test_wrapper_of_libhalmplane()
 	test_MplaneAld();
 	test_MplaneSync();
 	test_MplaneDelayMgmt();
+	test_MplaneModuleCapability();
+	test_MplaneSupervision();
 }
 
 int main(int argc, const char** argv)

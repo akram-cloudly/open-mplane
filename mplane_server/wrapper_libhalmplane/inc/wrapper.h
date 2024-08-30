@@ -19,7 +19,8 @@
 #include "MplaneBeamforming.h"
 #include "MplaneSync.h"
 #include "MplaneDelayMgmt.h"
-
+#include "MplaneModuleCapability.h"
+#include "MplaneSupervision.h"
 
 // 
 
@@ -71,6 +72,8 @@ halmplane_error_t _halmplane_update_ru_element(ru_elements_t* ru_element);
 // //MplaneUplaneConf
 int _halmplane_get_tx_array(const char* name, tx_array_t* tx_array);
 const char** _halmplane_get_tx_array_names();
+
+
 int _halmplane_get_low_level_tx_endpoint(const char* name, low_level_tx_endpoint_t* tx_endpoint);
 int _halmplane_get_low_level_tx_endpoints(low_level_tx_endpoint_t** tx_endpoints, int* n_endpoints);
 int _halmplane_get_rx_array(const char* name, rx_array_t* rx_arrays);
@@ -197,6 +200,14 @@ halmplane_error_t _halmplane_get_gnss_status(gnss_status_t* gnss_status);
 
 //MplaneDeleyMgmt
 int _halmplane_setDUToRUDelayMgmnt(o_ru_delay_management_s* ru_delay_mgmt);
+
+//MplaneModuleCapability
+int _halmplane_setDUToRUModuleCapability(module_capability_t* mod_capability);
+
+//MplaneSupervision
+uint32_t _halmplane_get_cu_supervison_interval(void);
+uint32_t _halmplane_set_cu_supervison_interval(
+    uint32_t cu_monitoring_interval);
 
 #define capture_source_as_str(src, strname) src; const static char* strname = #src;
 

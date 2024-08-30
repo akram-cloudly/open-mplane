@@ -13,8 +13,12 @@ string(CONCAT SRC
   "src/MplaneAld.cpp;"
   "src/MplaneBeamforming.cpp;"
   "src/MplaneSync.cpp;"
-  "src/MplaneDelayMgmt.cpp"
+  "src/MplaneDelayMgmt.cpp;"
+  "src/MplaneModuleCapability.cpp;"
+  "src/MplaneSupervision.cpp;"
+  "src/MplaneTransceiver.cpp;"
 )
+
 include_directories(inc)
 
 if( "${CONTEXT}" STREQUAL "YOCTO")

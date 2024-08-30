@@ -18,11 +18,13 @@
 #include "MplaneBeamforming.h"
 #include "MplaneSync.h"
 #include "MplaneDelayMgmt.h"
+#include "MplaneSupervision.h"
+
 
 extern "C"
 {
   void *function_map()
-  {
+  {    
     std::map<std::string, void*> *registered_functions;
     registered_functions = new std::map<std::string, void*>();
 
@@ -248,6 +250,15 @@ extern "C"
     (*registered_functions)["int (*halmplane_setDUToRUDelayMgmnt)"
     "(o_ru_delay_management_s*)"]= (void*)halmplane_setDUToRUDelayMgmnt; 
        
+    //MplaneModuleCapability
+    (*registered_functions)["int (*halmplane_setDUToRUModuleCapability)"
+    "(module_capability_t*)"]= (void*)halmplane_setDUToRUDelayMgmnt; 
+
+    //MplaneSupervision
+    (*registered_functions)["uint32_t (*halmplane_get_cu_supervison_interval)(void)"]
+    = (void*)halmplane_get_cu_supervison_interval; 
+    (*registered_functions)["uint32_t (*halmplane_set_cu_supervison_interval)(uint32_t)"]
+    = (void*)halmplane_set_cu_supervison_interval; 
 
     return registered_functions;
   }
