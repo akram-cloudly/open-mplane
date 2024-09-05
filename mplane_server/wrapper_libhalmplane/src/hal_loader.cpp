@@ -1,7 +1,7 @@
 #include "hal_loader.h"
 #include <cstddef>
 #include <iostream> 
-// #include "wrapper.h"
+#include "wrapper.h"
 
 Hal_Loader::Hal_Loader(const char* _libname)
 {
@@ -32,18 +32,18 @@ Hal_Loader::Hal_Loader(const char* _libname)
       registered_functions = new std::map<std::string, void*>();
     }
 
-    // std::cout <<"hal_loader.cpp" << std::endl;
-    // halmplane_error_t halmplane_interface_update(interface_t* interface)
+    std::cout <<"hal_loader.cpp" << std::endl;
+    // halmplane_error_t halmplane_interface_update(interface_t* interface);
 
-    // interface_t* xyz;
-    // halmplane_error_t (*halmplane_interface_update)(interface_t*) = (halmplane_error_t (*)(interface_t*)) dlsym(dlhandle,"halmplane_interface_update");
-    // // std::cout <<"address of int (*halmplane_init)() hal-loader" << (*registered_functions)["int (*halmplane_init)()"] << std::endl;
+    interface_t* xyz;
+    halmplane_error_t (*halmplane_interface_update)(interface_t*) = (halmplane_error_t (*)(interface_t*)) dlsym(dlhandle,"halmplane_interface_update");
+    // std::cout <<"address of int (*halmplane_init)() hal-loader" << (*registered_functions)["int (*halmplane_init)()"] << std::endl;
 
-    // if(halmplane_interface_update)
-    // {
-    //   std::cout << "successfull of hal_loader.cpp" << std::endl;
-    //   halmplane_interface_update(xyz);
-    // }
+    if(halmplane_interface_update)
+    {
+      std::cout << "successfull of hal_loader.cpp" << std::endl;
+      halmplane_interface_update(xyz);
+    }
 
 }
 
