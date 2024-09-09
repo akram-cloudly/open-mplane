@@ -98,9 +98,12 @@ void test_MplaneAlarms()
 void test_MplaneEcpri()
 {
     std::cout << "test_MplaneEcpri loading..." << std::endl;
-    halmplane_oran_hardware_t hw;
     _halmplane_message5Enabled();
+
+    #if 0
+    halmplane_oran_hardware_t hw;
     _halmplane_set_ietf_hardware (hw);
+    #endif
 }
 
 void test_MplaneExternalio()

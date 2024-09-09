@@ -660,7 +660,7 @@ bool _halmplane_message5Enabled(void)
   }
   return 0;
 }
-
+#if 0
 bool _halmplane_set_ietf_hardware (halmplane_oran_hardware_t hw)
 {
   capture_source_as_str(
@@ -677,6 +677,7 @@ bool _halmplane_set_ietf_hardware (halmplane_oran_hardware_t hw)
   }
   return 0;
 }
+#endif 
 
 //MplaneExternalio
 halmplane_error_t _halmplane_get_io_value(external_io_t* io)

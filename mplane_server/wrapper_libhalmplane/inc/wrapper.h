@@ -118,7 +118,9 @@ int _halmplane_registerOranAlarmCallback(halmplane_oran_alarm_cb_t callback);
 
 //MplaneEcpri
 bool _halmplane_message5Enabled(void);
+#if 0
 bool _halmplane_set_ietf_hardware (halmplane_oran_hardware_t hw);
+#endif
 
 //MplaneExternalio
 halmplane_error_t _halmplane_get_io_value(external_io_t* io);

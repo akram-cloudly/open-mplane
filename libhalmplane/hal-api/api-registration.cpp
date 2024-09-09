@@ -115,9 +115,11 @@ extern "C"
 
     //MplaneEcpri
     (*registered_functions)["bool (*halmplane_message5Enabled)(void)"]
-     = (void*)halmplane_message5Enabled;    
+     = (void*)halmplane_message5Enabled;
+    #if 0     
      (*registered_functions)["bool (*halmplane_set_ietf_hardware)(halmplane_oran_hardware_t)"]
      = (void*)halmplane_set_ietf_hardware;
+    #endif
 
     // //MplaneExternalio
     (*registered_functions)["halmplane_error_t (*halmplane_get_io_value)"
