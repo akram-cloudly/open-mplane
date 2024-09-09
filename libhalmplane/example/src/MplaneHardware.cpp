@@ -40,7 +40,7 @@ halmplane_error_t halmplane_get_energysaving_state(hw_component_t *hw_comp){
  */
 halmplane_error_t halmplane_get_availability_type(hw_component_t *hw_comp){
     //TODO when alarms list is available
-    std::cout << "halmplane_get_energysaving_state() loading..." << std::endl;
+    std::cout << "halmplane_get_availability_type() loading..." << std::endl;
     return UNIMPLEMENTED;
 }
 

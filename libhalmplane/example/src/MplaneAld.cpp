@@ -28,3 +28,10 @@ halmplane_error_t halmplane_ald_set_receive_mode(
     std::cout << "halmplane_ald_set_receive_mode() loading..." << std::endl;
     return NONE;    
 }
+
+halmplane_error_t halmplane_ald_request(
+    halmplane_ald_communication_input_t* ald_req, uint16_t msg_size)
+{
+    std::cout << "halmplane_ald_request() loading..." << std::endl;
+    return NONE;    
+}

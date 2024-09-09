@@ -115,7 +115,9 @@ extern "C"
 
     //MplaneEcpri
     (*registered_functions)["bool (*halmplane_message5Enabled)(void)"]
-     = (void*)halmplane_message5Enabled;
+     = (void*)halmplane_message5Enabled;    
+     (*registered_functions)["bool (*halmplane_set_ietf_hardware)(halmplane_oran_hardware_t)"]
+     = (void*)halmplane_set_ietf_hardware;
 
     // //MplaneExternalio
     (*registered_functions)["halmplane_error_t (*halmplane_get_io_value)"
@@ -137,6 +139,8 @@ extern "C"
     (*registered_functions)["int (*halmplane_registerOranPerfMeasCallback)"
     "(halmplane_oran_perf_meas_cb_t)"]
      = (void*)halmplane_registerOranPerfMeasCallback;
+    (*registered_functions)["const halmplane_oran_perf_meas_cb_t (*get_perf_meas_cb_ptr)(void)"]
+     = (void*)get_perf_meas_cb_ptr;
 
     (*registered_functions)["int (*halmplane_getRssi)"
     "(uint8_t, double*)"]
@@ -204,7 +208,7 @@ extern "C"
      = (void*)halmplane_get_fan_vendor_code;
     (*registered_functions)["halmplane_error_t (*halmplane_get_fan_speed)"
     "(fan_state_t*)"]
-     = (void*)halmplane_get_fan_vendor_code;
+     = (void*)halmplane_get_fan_speed;
     (*registered_functions)["halmplane_error_t (*halmplane_get_fan_target_speed)"
     "(fan_state_t*)"]
      = (void*)halmplane_get_fan_target_speed;
@@ -226,7 +230,10 @@ extern "C"
      = (void*)halmplane_ald_response;  
     (*registered_functions)["halmplane_error_t (*halmplane_ald_set_receive_mode)"
     "(halmplane_ald_communication_input_s*, uint16_t)"]
-     = (void*)halmplane_ald_set_receive_mode;  
+     = (void*)halmplane_ald_set_receive_mode;
+    (*registered_functions)["halmplane_error_t (*halmplane_ald_request)"
+    "(halmplane_ald_communication_input_t*, uint16_t)"]
+     = (void*)halmplane_ald_request;  
 
      //MplaneBeamforming    
     (*registered_functions)["halmplane_error_t (*halmplane_apply_beamforming_file)"
@@ -252,7 +259,7 @@ extern "C"
        
     //MplaneModuleCapability
     (*registered_functions)["int (*halmplane_setDUToRUModuleCapability)"
-    "(module_capability_t*)"]= (void*)halmplane_setDUToRUDelayMgmnt; 
+    "(module_capability_t*)"]= (void*)halmplane_setDUToRUModuleCapability; 
 
     //MplaneSupervision
     (*registered_functions)["uint32_t (*halmplane_get_cu_supervison_interval)(void)"]

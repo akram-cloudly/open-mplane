@@ -99,7 +99,6 @@ halmplane_error_t _halmplane_interface_update_enabled(
   const char* name, bool enabled)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update_enabled)(const char*, bool), ftag);
-  // halmplane_error_t halmplane_update_ru_element_(ru_elements_t* ru_element);
 
   halmplane_interface_update_enabled = (halmplane_error_t (*)(const char*, bool)) hal_loader->get_function(ftag);
 
@@ -662,6 +661,23 @@ bool _halmplane_message5Enabled(void)
   return 0;
 }
 
+bool _halmplane_set_ietf_hardware (halmplane_oran_hardware_t hw)
+{
+  capture_source_as_str(
+  bool (*halmplane_set_ietf_hardware)(halmplane_oran_hardware_t), ftag);
+  halmplane_set_ietf_hardware = (bool (*)(halmplane_oran_hardware_t))hal_loader->get_function(ftag);
+   if(halmplane_set_ietf_hardware)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_set_ietf_hardware(hw);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return 0;
+}
+
 //MplaneExternalio
 halmplane_error_t _halmplane_get_io_value(external_io_t* io)
 {
@@ -703,6 +719,8 @@ halmplane_error_t _halmplane_set_io_value(output_setting_t* out_setting)
   return NONE;  
 }
 
+//MplanePerformanceMgmt
+
 int _halmplane_activateEpeMeasObjects(
     epe_measurement_objects_t config, halmplane_epe_meas_cb_t cb)
 {
@@ -724,27 +742,6 @@ int _halmplane_activateEpeMeasObjects(
   return NONE;  
 }
 
-// int _halmplane_activateEpeMeasObjects(
-//     int config, int cb)
-// {
-//   capture_source_as_str(
-//   int (*halmplane_activateEpeMeasObjects)(int, int), ftag);
-  
-//   halmplane_activateEpeMeasObjects = (int (*)
-//   (int, int))hal_loader->get_function(ftag);
-
-//   if(halmplane_activateEpeMeasObjects)
-//   {
-//     std::cout << "wrapper " ;
-//     return halmplane_activateEpeMeasObjects(config, cb);
-//   }
-//   else 
-//   {
-//     std::cout <<"function does not exist." << std::endl;
-//   }
-//   return 0;  
-// }
-
 int _halmplane_registerOranPerfMeasCallback(halmplane_oran_perf_meas_cb_t callback)
 {
 capture_source_as_str(
@@ -763,6 +760,26 @@ capture_source_as_str(
     std::cout <<"function does not exist." << std::endl;
   }
   return 0;
+}
+
+const halmplane_oran_perf_meas_cb_t _get_perf_meas_cb_ptr(void)
+{
+capture_source_as_str(
+  const halmplane_oran_perf_meas_cb_t (*get_perf_meas_cb_ptr)(void), ftag);
+  
+  get_perf_meas_cb_ptr = (const halmplane_oran_perf_meas_cb_t (*)
+  (void))hal_loader->get_function(ftag);
+
+  if(get_perf_meas_cb_ptr)
+  {
+    std::cout << "wrapper " ;
+    return get_perf_meas_cb_ptr();
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return 0;  
 }
 
 int _halmplane_getRssi(uint8_t interface, double* rssiValue)
@@ -995,7 +1012,7 @@ halmplane_error_t _halmplane_get_last_service_date(hw_component_t* hw_comp)
   
   halmplane_get_last_service_date = (halmplane_error_t (*)
   (hw_component_t*))hal_loader->get_function(ftag);
-  if(halmplane_get_dying_gasp_support)
+  if(halmplane_get_last_service_date)
   {
     std::cout << "wrapper " ;
     return halmplane_get_last_service_date(hw_comp);
@@ -1013,7 +1030,7 @@ halmplane_error_t _halmplane_get_o_ran_name(hw_component_t* hw_comp)
   
   halmplane_get_o_ran_name = (halmplane_error_t (*)
   (hw_component_t*))hal_loader->get_function(ftag);
-  if(halmplane_get_dying_gasp_support)
+  if(halmplane_get_o_ran_name)
   {
     std::cout << "wrapper " ;
     return halmplane_get_o_ran_name(hw_comp);
@@ -1227,6 +1244,8 @@ halmplane_error_t _halmplane_start_antenna_calibration(
   return NONE;    
 }
 
+//MplaneAld
+
 halmplane_error_t _halmplane_ald_get_counters(
     const halmplane_ald_communication_output_t* ald_status)
 {
@@ -1307,6 +1326,27 @@ halmplane_error_t _halmplane_ald_set_receive_mode(
   return NONE;   
 }
 
+halmplane_error_t _halmplane_ald_request(
+    halmplane_ald_communication_input_t* ald_req, uint16_t msg_size)
+{
+  capture_source_as_str(
+  halmplane_error_t (*halmplane_ald_request)(halmplane_ald_communication_input_t*, uint16_t), ftag);
+  
+  halmplane_ald_request = (halmplane_error_t (*)
+  (halmplane_ald_communication_input_t*, uint16_t))hal_loader->get_function(ftag);
+  if(halmplane_ald_request)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_ald_request(ald_req, msg_size);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE; 
+}
+
+//MplaneBeamforming.h
 halmplane_error_t _halmplane_apply_beamforming_file(char* filepath)
 {
   capture_source_as_str(

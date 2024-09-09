@@ -9,6 +9,7 @@
 #define __MPLANE_ECPRI_H__
 
 #include <stdbool.h>
+#include <stdint.h>
 
 /**
  * Check if message5 is enabled on RU.
@@ -22,9 +23,11 @@ bool halmplane_message5Enabled(void);
 typedef struct ietf_hardware_component_s
 {
     char name[256];
-    char class[256];
+    // char class[256];
+    char class_name[256];
     char parent[256];
-    sint32_t parent_rel_pos;
+    // sint32_t parent_rel_pos;
+    int32_t parent_rel_pos;
     char alias[256];
     char asset_id[256];
     char uri[256];

@@ -98,7 +98,9 @@ void test_MplaneAlarms()
 void test_MplaneEcpri()
 {
     std::cout << "test_MplaneEcpri loading..." << std::endl;
+    halmplane_oran_hardware_t hw;
     _halmplane_message5Enabled();
+    _halmplane_set_ietf_hardware (hw);
 }
 
 void test_MplaneExternalio()
@@ -112,7 +114,7 @@ void test_MplaneExternalio()
 
 void test_MplanePerformanceMgmt()
 {
-    std::cout << "test_MplaneProcessingElements loading..." << std::endl;
+    std::cout << "test_MplanePerformanceMgmt loading..." << std::endl;
     epe_measurement_objects_t config;
     halmplane_epe_meas_cb_t cb;
     halmplane_oran_perf_meas_cb_t callback;
@@ -129,6 +131,7 @@ void test_MplanePerformanceMgmt()
     _halmplane_getRssi(interface, rssiValue);
     // int config, cb;
     _halmplane_activateEpeMeasObjects(config, cb);
+    _get_perf_meas_cb_ptr();
     _halmplane_registerOranPerfMeasCallback(callback);
     _halmplane_configPerfMeasurementParams(performance_config);
     _halmplane_activateTransceiverMeasObjects(transceiver_config, transceiver_cb);
@@ -188,6 +191,7 @@ void test_MplaneAld()
     _halmplane_ald_get_status(ald_status);
     _halmplane_ald_response(ald_req, msg_size);
     _halmplane_ald_set_receive_mode(ald_req, msg_size);
+    _halmplane_ald_request(ald_req, msg_size);
 }
 
 void test_MplaneBeamforming()

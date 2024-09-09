@@ -20,6 +20,7 @@ int fb_oru_registerOranPerfMeasCallback(const halmplane_oran_perf_meas_cb_t call
 }
 
 const halmplane_oran_perf_meas_cb_t get_perf_meas_cb_ptr(void){
+	std::cout << "get_perf_meas_cb_ptr() loading..." << std::endl;
     return fb_oru_perfMeasInfo.cb_ptr;
 }
 

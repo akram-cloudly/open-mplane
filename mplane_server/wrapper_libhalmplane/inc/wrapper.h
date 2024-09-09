@@ -118,6 +118,7 @@ int _halmplane_registerOranAlarmCallback(halmplane_oran_alarm_cb_t callback);
 
 //MplaneEcpri
 bool _halmplane_message5Enabled(void);
+bool _halmplane_set_ietf_hardware (halmplane_oran_hardware_t hw);
 
 //MplaneExternalio
 halmplane_error_t _halmplane_get_io_value(external_io_t* io);
@@ -129,6 +130,7 @@ int _halmplane_activateEpeMeasObjects(
     epe_measurement_objects_t config, halmplane_epe_meas_cb_t cb);
 
 int _halmplane_registerOranPerfMeasCallback(halmplane_oran_perf_meas_cb_t callback);
+const halmplane_oran_perf_meas_cb_t _get_perf_meas_cb_ptr(void);
 int _halmplane_getRssi(uint8_t interface, double* rssiValue);
 int _halmplane_configPerfMeasurementParams(
     performance_measurement_params_t* config);
@@ -186,6 +188,8 @@ halmplane_error_t _halmplane_ald_response(
     halmplane_ald_communication_input_s* ald_req, uint16_t msg_size);
 halmplane_error_t _halmplane_ald_set_receive_mode(
     halmplane_ald_communication_input_s* ald_req, uint16_t msg_size);
+halmplane_error_t _halmplane_ald_request(
+    halmplane_ald_communication_input_t* ald_req, uint16_t msg_size);
 
 //MplaneBeamforming.h
 halmplane_error_t _halmplane_apply_beamforming_file(char* filepath);
