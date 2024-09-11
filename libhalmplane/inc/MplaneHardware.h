@@ -194,11 +194,11 @@ typedef struct ietf_hardware_s {
  * ietf_hw_component_s.name param config The ietf_hardware_t struct, filled by
  * this function Returns 0 if successfully reterived config, else 1.
  */
-extern "C" bool halmplane_get_ietf_hardware(ietf_hardware_t* hw);
+bool halmplane_get_ietf_hardware(ietf_hardware_t* hw);
 
 // Operation State Change Register CB and Notification from FW
 typedef void (*halmplane_notificationHwStateChange_cb_t)(oper_state_t state);
-extern "C" int halmplane_registerHwStateChange(
+int halmplane_registerHwStateChange(
     halmplane_notificationHwStateChange_cb_t cb);
 
 typedef struct notify_hw_state_oper_s {
@@ -211,7 +211,7 @@ typedef struct notify_hw_state_oper_s {
 // Operation Enabled/Disabled _ Register CB and Notification from FW
 typedef void (*halmplane_notificationHwStateOper_cb_t)(
     const notify_hw_state_oper_t notify, bool state);
-extern "C" int halmplane_registerHwStateOper(
+int halmplane_registerHwStateOper(
     halmplane_notificationHwStateOper_cb_t cb);
 
 /**
@@ -232,7 +232,7 @@ extern "C" int halmplane_registerHwStateOper(
  *
  * @ingroup HardwareFunctions
  */
-extern "C" halmplane_error_t halmplane_get_energysaving_state(hw_component_t* hw_comp);
+halmplane_error_t halmplane_get_energysaving_state(hw_component_t* hw_comp);
 
 /**
  * @brief Get the availability type associated with this hardware component.
@@ -244,7 +244,7 @@ extern "C" halmplane_error_t halmplane_get_energysaving_state(hw_component_t* hw
  *
  * @ingroup HardwareFunctions
  */
-extern "C" halmplane_error_t halmplane_get_availability_type(hw_component_t* hw_comp);
+halmplane_error_t halmplane_get_availability_type(hw_component_t* hw_comp);
 
 /**
  * @brief Get label content details (model name and serial no. present?)
@@ -257,7 +257,7 @@ extern "C" halmplane_error_t halmplane_get_availability_type(hw_component_t* hw_
  *
  * @ingroup HardwareFunctions
  */
-extern "C" halmplane_error_t halmplane_get_label_content(hw_component_t* hw_comp);
+halmplane_error_t halmplane_get_label_content(hw_component_t* hw_comp);
 
 /**
  * @brief Get the product code associated with this hardware component.
@@ -269,7 +269,7 @@ extern "C" halmplane_error_t halmplane_get_label_content(hw_component_t* hw_comp
  *
  * @ingroup HardwareFunctions
  */
-extern "C" halmplane_error_t halmplane_get_product_code(hw_component_t* hw_comp);
+halmplane_error_t halmplane_get_product_code(hw_component_t* hw_comp);
 
 /**
  * @brief Checks if energy saving is enabled on this hardware component.
@@ -281,7 +281,7 @@ extern "C" halmplane_error_t halmplane_get_product_code(hw_component_t* hw_comp)
  *
  * @ingroup HardwareFunctions
  */
-extern "C" halmplane_error_t halmplane_is_energy_saving_enabled(
+halmplane_error_t halmplane_is_energy_saving_enabled(
     hw_component_t* hw_comp);
 
 /**
@@ -294,7 +294,7 @@ extern "C" halmplane_error_t halmplane_is_energy_saving_enabled(
  *
  * @ingroup HardwareFunctions
  */
-extern "C" halmplane_error_t halmplane_get_dying_gasp_support(hw_component_t* hw_comp);
+halmplane_error_t halmplane_get_dying_gasp_support(hw_component_t* hw_comp);
 
 /**
  * @brief Get the last service date of this hardware component.
@@ -306,7 +306,7 @@ extern "C" halmplane_error_t halmplane_get_dying_gasp_support(hw_component_t* hw
  *
  * @ingroup HardwareFunctions
  */
-extern "C" halmplane_error_t halmplane_get_last_service_date(hw_component_t* hw_comp);
+halmplane_error_t halmplane_get_last_service_date(hw_component_t* hw_comp);
 
 /**
  * @brief Get the O-RAN compliant name of this hardware component.
@@ -318,6 +318,6 @@ extern "C" halmplane_error_t halmplane_get_last_service_date(hw_component_t* hw_
  *
  * @ingroup HardwareFunctions
  */
-extern "C" halmplane_error_t halmplane_get_o_ran_name(hw_component_t* hw_comp);
+halmplane_error_t halmplane_get_o_ran_name(hw_component_t* hw_comp);
 
 #endif // __MPLANE_ORAN_HARDWARE_H__

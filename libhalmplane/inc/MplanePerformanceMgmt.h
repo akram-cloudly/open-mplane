@@ -302,7 +302,4 @@ typedef void (*halmplane_epe_meas_cb_t)(
 int halmplane_activateEpeMeasObjects(
     epe_measurement_objects_t config, halmplane_epe_meas_cb_t cb);
 
-// extern "C" int halmplane_activateEpeMeasObjects(
-//     int config, int cb);
-
 #endif // __MPLANE_PERFORMANCE_MGMT_H__

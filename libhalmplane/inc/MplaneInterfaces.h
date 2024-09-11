@@ -12,8 +12,7 @@
 #include <stdint.h>
 
 #include "MplaneTypes.h"
-extern "C"
-{typedef enum enable_status_e {
+typedef enum enable_status_e {
   STATUS_ENABLED = 1,
   STATUS_DISABLED
 } enable_status_t;
@@ -51,8 +50,7 @@ typedef struct interface_s {
   cos_marking_t classOfService;
 } interface_t;
 
-}
-extern "C"  halmplane_error_t halmplane_interface_update(interface_t* interface);
+  halmplane_error_t halmplane_interface_update(interface_t* interface);
 
   halmplane_error_t halmplane_interface_update_description(
       const char* name, const char* description);

@@ -13,13 +13,13 @@
  *
  * @return 0 if successful, 1 otherwise
  */
-extern "C" int halmplane_init();
+int halmplane_init();
 
 /**
  * @brief HAl exit function, to be called when application exits.
  *
  * @return 0 if successful, 1 otherwise
  */
-extern "C" int halmplane_exit();
+int halmplane_exit();
 
 #endif // __HAL_MPLANE_H__

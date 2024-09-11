@@ -714,7 +714,7 @@ typedef void (*halmplane_carrier_state_cb_t)(
  *           carrier state.
  * @return 0 if successful, 1 otherwise.
  *
- * @ingroup UplaneConfFunctzions
+ * @ingroup UplaneConfFunctions
  */
 int halmplane_register_rx_carrier_state_cb(halmplane_carrier_state_cb_t cb);
 

@@ -44,7 +44,7 @@ typedef struct fan_state_s {
  *
  * @ingroup FanFunctions
  */
-extern "C" halmplane_error_t halmplane_get_fan_name(fan_state_t* fan_state);
+halmplane_error_t halmplane_get_fan_name(fan_state_t* fan_state);
 
 /**
  * @brief Sets the `fan_location` member of fan_state.
@@ -55,7 +55,7 @@ extern "C" halmplane_error_t halmplane_get_fan_name(fan_state_t* fan_state);
  *
  * @ingroup FanFunctions
  */
-extern "C" halmplane_error_t halmplane_get_fan_location(fan_state_t* fan_state);
+halmplane_error_t halmplane_get_fan_location(fan_state_t* fan_state);
 
 /**
  * @brief Sets the `present_and_operating` member of fan_state.
@@ -66,7 +66,7 @@ extern "C" halmplane_error_t halmplane_get_fan_location(fan_state_t* fan_state);
  *
  * @ingroup FanFunctions
  */
-extern "C" halmplane_error_t halmplane_get_fan_present_and_operating(
+halmplane_error_t halmplane_get_fan_present_and_operating(
     fan_state_t* fan_state);
 
 /**
@@ -78,7 +78,7 @@ extern "C" halmplane_error_t halmplane_get_fan_present_and_operating(
  *
  * @ingroup FanFunctions
  */
-extern "C" halmplane_error_t halmplane_get_fan_vendor_code(fan_state_t* fan_state);
+halmplane_error_t halmplane_get_fan_vendor_code(fan_state_t* fan_state);
 
 /**
  * @brief Sets the `fan_speed` member of fan_state.
@@ -89,7 +89,7 @@ extern "C" halmplane_error_t halmplane_get_fan_vendor_code(fan_state_t* fan_stat
  *
  * @ingroup FanFunctions
  */
-extern "C" halmplane_error_t halmplane_get_fan_speed(fan_state_t* fan_state);
+halmplane_error_t halmplane_get_fan_speed(fan_state_t* fan_state);
 
 /**
  * @brief Sets the `target_speed` member of fan_state.
@@ -100,6 +100,6 @@ extern "C" halmplane_error_t halmplane_get_fan_speed(fan_state_t* fan_state);
  *
  * @ingroup FanFunctions
  */
-extern "C" halmplane_error_t halmplane_get_fan_target_speed(fan_state_t* fan_state);
+halmplane_error_t halmplane_get_fan_target_speed(fan_state_t* fan_state);
 
 #endif //__MPLANE_FAN_H__
