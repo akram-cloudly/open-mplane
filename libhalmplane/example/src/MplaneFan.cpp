@@ -13,9 +13,9 @@
 #include <string>
 #include <sys/ioctl.h>
 
-extern "C" {
+// extern "C" {
 #include "MplaneFan.h"
-}
+// }
 
 namespace {
 const char *kfanName{"COFAN 30-4988-10"}; // name/model of the fan

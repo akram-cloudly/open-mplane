@@ -9,10 +9,10 @@
 #include <string>
 #include <iostream>
 
-extern "C" {
+// extern "C" {
 
 #include "MplaneExternalio.h"
-}
+// }
 
 namespace {
 const int kStartPin{338};
@@ -48,7 +48,7 @@ bool is_valid_io_port(const string &name) {
  * Gets the filename which contains the value of the GPIO
  * Returns an error if any, NONE otherwise
  */
-extern "C" halmplane_error_t get_value_file_name(const string &name, string &file_name) {
+halmplane_error_t get_value_file_name(const string &name, string &file_name) {
     // check if name is a valid port
     if (!is_valid_io_port(name)) {
         return INVALID_ARG;
@@ -72,7 +72,7 @@ extern "C" halmplane_error_t get_value_file_name(const string &name, string &fil
  * For outputs, sets the parameter `line_out` with the value of the port specified by `name`
  * Returns an error if any, NONE otherwise
  */
-extern "C"  halmplane_error_t halmplane_get_io_value(external_io_t *io) {
+halmplane_error_t halmplane_get_io_value(external_io_t *io) {
     // string io_name;
     // bool *setting;
 
@@ -118,7 +118,7 @@ extern "C"  halmplane_error_t halmplane_get_io_value(external_io_t *io) {
  * Sets the output of the port to the specified value
  * Returns an error if any, NONE otherwise
  */
-extern "C" halmplane_error_t halmplane_set_io_value(output_setting_t *out_setting) {
+halmplane_error_t halmplane_set_io_value(output_setting_t *out_setting) {
     // string file_name;
     // halmplane_error_t err =
     //     get_value_file_name(string(out_setting->name), file_name);

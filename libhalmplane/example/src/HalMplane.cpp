@@ -8,17 +8,16 @@
 #include "HalMplane.h"
 #include <iostream>
 
-extern "C"
+
+int halmplane_init()
 {
-    int halmplane_init()
-    {
-        std::cout << "Halmplane initializing...." <<std::endl;
-        return 0;
-    }
+    std::cout << "Halmplane initializing...." <<std::endl;
+    return 0;
+}
 
 int halmplane_exit()
 {
     std::cout << "Halmplane exiting...." << std::endl;
     return 0;
 }
-}
+

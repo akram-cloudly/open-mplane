@@ -8,13 +8,10 @@
 #include "MplaneInterfaces.h"
 #include <iostream>
 
-extern "C"
-{
-  halmplane_error_t
-  halmplane_interface_update(interface_t* interface) {
-    std::cout << "halmplane_interface_update() loading..." << std::endl;
-    return NONE;
-  }
+halmplane_error_t
+halmplane_interface_update(interface_t* interface) {
+  std::cout << "halmplane_interface_update() loading..." << std::endl;
+  return NONE;
 }
 
 halmplane_error_t

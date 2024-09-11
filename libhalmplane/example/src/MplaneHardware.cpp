@@ -9,9 +9,9 @@
 #include <string>
 #include <iostream> 
 
-extern "C" {
+// extern "C" {
 #include "MplaneHardware.h"
-}
+// }
 
 namespace{
 const bool kModelNamePres = true;
