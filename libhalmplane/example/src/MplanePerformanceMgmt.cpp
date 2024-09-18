@@ -16,9 +16,7 @@
 
 int halmplane_registerOranPerfMeasCallback(halmplane_oran_perf_meas_cb_t callback) {
     std::cout << "halmplane_registerOranPerfMeasCallback() loading..." << std::endl;
-     
-    return fb_oru_registerOranPerfMeasCallback(callback);
-    // return 0;
+    return 0;
 }
 
 int halmplane_getRssi(uint8_t interface, double *rssiValue) {
@@ -71,4 +69,11 @@ int halmplane_activateTxMeasObjects(
 {
     std::cout << "halmplane_activateTxMeasObjects() loading..." << std::endl;
     return 0;    
+}
+
+const halmplane_oran_perf_meas_cb_t get_perf_meas_cb_ptr(void)
+{
+    MplanePerfMeasInfo fb_oru_perfMeasInfo;
+    std::cout << "get_perf_meas_cb_ptr() loading..." << std::endl;
+    return fb_oru_perfMeasInfo.cb_ptr;
 }
