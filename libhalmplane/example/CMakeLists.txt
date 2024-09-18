@@ -21,7 +21,7 @@ string(CONCAT SRC
 
 include_directories(inc)
 
-if( "${CONTEXT}" STREQUAL "YOCTO")
+if(("${CONTEXT}" STREQUAL "YOCTO") OR ("${CONTEXT}" STREQUAL "MODULE"))
   list(TRANSFORM SRC PREPEND "example/")
   target_sources(halmplane PRIVATE ${SRC})
 else()
