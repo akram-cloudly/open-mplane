@@ -300,7 +300,8 @@ list(APPEND MPLANE_SERVER_SOURCES
 add_executable(mplane-server-app ${MPLANE_SERVER_SOURCES})
 
 find_library(CRYPTO crypto)
-#find_library(HALMPLANE halmplane)
+find_library(DL dl)
+find_library(HALMPLANE halmplane)
 find_library(PTHREAD pthread)
 find_library(SSH ssh)
 find_library(SSL ssl)
@@ -314,7 +315,7 @@ find_package(ZLIB REQUIRED)
 
 target_link_libraries(mplane-server-app
   ${CRYPTO}
-#  ${HALMPLANE}
+  ${HALMPLANE}
   ${DL}
   ${PTHREAD}
   ${SSH}

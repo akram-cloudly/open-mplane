@@ -101,4 +101,9 @@
       <leaf-maximum-number-of-transport-flows value="1" />
     </container-processing-elements>
   </module-o-ran-processing-element>
+
+  <modular>
+    <file value="libhalmplane-mod-example-1.1.0.so" />
+  </modular>
+
 </root>
