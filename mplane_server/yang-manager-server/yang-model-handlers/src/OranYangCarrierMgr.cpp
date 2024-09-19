@@ -281,7 +281,7 @@ OranYangCarrierMgr::updateRxEndpointDynCompConfig(
         std::make_shared<std::string>(compressionMethod)->c_str();
   }
 
-  _halmplane_update_rx_endpoint_compression_dyn_config(
+  halmplane_update_rx_endpoint_compression_dyn_config(
       endpointName.c_str(), mRxEndpointDynComps[endpointName][idVal].get());
 }
 
@@ -312,7 +312,7 @@ OranYangCarrierMgr::updateTxEndpointDynCompConfig(
         std::make_shared<std::string>(compressionMethod)->c_str();
   }
 
-  _halmplane_update_tx_endpoint_compression_dyn_config(
+  halmplane_update_tx_endpoint_compression_dyn_config(
       endpointName.c_str(), mTxEndpointDynComps[endpointName][idVal].get());
 }
 
@@ -378,7 +378,7 @@ OranYangCarrierMgr::updateRxEndpointCompression(
     }
   }
 
-  _halmplane_update_rx_endpoint_compression(
+  halmplane_update_rx_endpoint_compression(
       endpointName.c_str(), mRxEndpointComps[endpointName].get());
 }
 
@@ -428,7 +428,7 @@ OranYangCarrierMgr::updateTxEndpointCompression(
     compression->sres_mod_comp_scaler = std::stoi(val2);
   }
 
-  _halmplane_update_tx_endpoint_compression(
+  halmplane_update_tx_endpoint_compression(
       endpointName.c_str(), mTxEndpointComps[endpointName].get());
 }
 
@@ -466,7 +466,7 @@ OranYangCarrierMgr::updateRxEndpointEaxc(
     eaxc->eaxc_id = std::stoi(eaxcId);
   }
 
-  _halmplane_update_rx_eaxc(
+  halmplane_update_rx_eaxc(
       endpointName.c_str(), mRxEndpointEaxcs[endpointName].get());
 }
 
@@ -504,7 +504,7 @@ OranYangCarrierMgr::updateTxEndpointEaxc(
     eaxc->eaxc_id = std::stoi(eaxcId);
   }
 
-  _halmplane_update_tx_eaxc(
+  halmplane_update_tx_eaxc(
       endpointName.c_str(), mTxEndpointEaxcs[endpointName].get());
 }
 

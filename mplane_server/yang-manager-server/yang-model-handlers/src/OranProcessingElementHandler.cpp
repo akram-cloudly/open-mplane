@@ -263,7 +263,7 @@ OranProcessingElementHandler::updateRuElement(
           std::make_shared<std::string>(oduMac)->c_str();
     }
   }
-  _halmplane_update_ru_element(mRuElements[name].get());
+  halmplane_update_ru_element(mRuElements[name].get());
 }
 
 //===========================================================================

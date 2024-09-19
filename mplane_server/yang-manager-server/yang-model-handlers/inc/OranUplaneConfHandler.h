@@ -18,8 +18,7 @@
 #include "SysrepoGetitemsCallback.h"
 #include "YangHandlerSysrepo.h"
 
-// #include <MplaneUplaneConf.h>
-#include <wrapper.h>
+#include <MplaneUplaneConf.h>
 
 namespace Mplane {
 

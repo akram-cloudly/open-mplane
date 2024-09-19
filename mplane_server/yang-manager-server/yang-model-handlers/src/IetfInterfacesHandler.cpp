@@ -176,7 +176,6 @@ bool
 IetfInterfacesHandler::initialise() {
   // ------------------------------------------------------------------------
   // daisychain the initialisations
-  // std::cout << "Adding interfaces" << std::endl;
   // ------------------------------------------------------------------------
   if (!this->YangHandlerSysrepo::initialise())
     return false;
@@ -191,17 +190,7 @@ IetfInterfacesHandler::initialise() {
   auto numInterfaces = mConfig->getNumOfListEntries(
       "module-ietf-interfaces/container-interfaces/list-interface");
 
-  std::cout << "ItefInterfaceHandler::Initialize() loading..." << std::endl;
-  // // Add an interface entry for each interface
-  std::string name = mConfig->getValue(
-        std::string(
-            "module-ietf-interfaces/container-interfaces/list-interface[") +
-        std::to_string(0) + "]/leaf-name");
-    _halmplane_interface_update(mInterfaces[name].get());
-    std::cout << "ItefInterfaceHandler::Initialize() loading..." << std::endl;
-
-
-  // std::cout << "For loop starting..." << std::endl;
+  // Add an interface entry for each interface
   for (int i = 0; i < numInterfaces; i++) {
     std::string name = mConfig->getValue(
         std::string(
@@ -211,7 +200,7 @@ IetfInterfacesHandler::initialise() {
     createInterfaceListEntry(dataSte, i);
     // Add configuration data for physical interface
     addInterface(i);
-    _halmplane_interface_update(mInterfaces[name].get());
+    halmplane_interface_update(mInterfaces[name].get());
   }
 
   // ------------------------------------------------------------------------
@@ -219,7 +208,6 @@ IetfInterfacesHandler::initialise() {
   // ------------------------------------------------------------------------
   getItemsSubscribe(mCallback->path(), mCallback);
   changeSubscribe();
-
 
   return true;
 }
@@ -259,23 +247,23 @@ IetfInterfacesHandler::valueChange(
 
   if (listName == "interface") {
     if (leaf == "description") {
-      _halmplane_interface_update_description(index.c_str(), value.c_str());
+      halmplane_interface_update_description(index.c_str(), value.c_str());
     } else if (leaf == "type") {
-      _halmplane_interface_update_type(index.c_str(), value.c_str());
+      halmplane_interface_update_type(index.c_str(), value.c_str());
     } else if (leaf == "enabled") {
-      _halmplane_interface_update_enabled(index.c_str(), value == "true");
+      halmplane_interface_update_enabled(index.c_str(), value == "true");
     }
     // leaf names that originate from augments contain prefixes in this parsing
     else if (leaf.find("l2-mtu") != std::string::npos) {
-      _halmplane_interface_update_l2_mtu(index.c_str(), std::stoi(value));
+      halmplane_interface_update_l2_mtu(index.c_str(), std::stoi(value));
     } else if (leaf.find("vlan-tagging") != std::string::npos) {
-      _halmplane_interface_update_vlan_tagging(index.c_str(), value == "true");
+      halmplane_interface_update_vlan_tagging(index.c_str(), value == "true");
     } else if (leaf.find("base-interface") != std::string::npos) {
-      _halmplane_interface_update_base_interface(index.c_str(), value.c_str());
+      halmplane_interface_update_base_interface(index.c_str(), value.c_str());
     } else if (leaf.find("vlan-id") != std::string::npos) {
-      _halmplane_interface_update_vlan_id(index.c_str(), std::stoi(value));
+      halmplane_interface_update_vlan_id(index.c_str(), std::stoi(value));
     } else if (leaf.find("mac-address") != std::string::npos) {
-      _halmplane_interface_update_mac_address(index.c_str(), value.c_str());
+      halmplane_interface_update_mac_address(index.c_str(), value.c_str());
     }
     // TODO: cos markings
   }
