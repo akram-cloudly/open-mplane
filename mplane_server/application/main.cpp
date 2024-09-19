@@ -62,8 +62,6 @@ int main(int argc, const char** argv)
 	sa.sa_handler = &sigintHandler;
 	sigfillset(&sa.sa_mask);
 	sa.sa_flags = 0;
-
-	std::cout << "create wrapper libhalmplane" << std::endl;
 	sigaction(SIGINT, &sa, NULL);
 
 	//Initialize the wrapper halmplane
