@@ -1,6 +1,6 @@
 string(CONCAT SRC
   "src/MplaneInterfaces.cpp;"
-  "src/APIregistration.cpp;"
+  # "src/APIregistration.cpp;"
   "src/MplaneProcessingElements.cpp;"
   "src/MplaneUplaneConf.cpp;"
   "src/HalMplane.cpp;"
