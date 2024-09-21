@@ -21,6 +21,7 @@
 #include "MplaneDelayMgmt.h"
 #include "MplaneModuleCapability.h"
 #include "MplaneSupervision.h"
+#include "MplaneTransceiver.h"
 
 // 
 
@@ -214,6 +215,9 @@ int _halmplane_setDUToRUModuleCapability(module_capability_t* mod_capability);
 uint32_t _halmplane_get_cu_supervison_interval(void);
 uint32_t _halmplane_set_cu_supervison_interval(
     uint32_t cu_monitoring_interval);
+
+//Transceiver
+int _halmplane_get_port_transceivers(port_transceivers_t* transceivers);
 
 #define capture_source_as_str(src, strname) src; const static char* strname = #src;
 

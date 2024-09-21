@@ -45,5 +45,6 @@ void test_MplaneSync();
 void test_MplaneDelayMgmt();
 void test_MplaneModuleCapability();
 void test_MplaneSupervision();
+void test_MplaneTransceiver();
 
 #endif /* TEST_WRAPPER_H_ */

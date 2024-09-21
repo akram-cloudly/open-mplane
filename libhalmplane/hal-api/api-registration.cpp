@@ -19,6 +19,7 @@
 #include "MplaneSync.h"
 #include "MplaneDelayMgmt.h"
 #include "MplaneSupervision.h"
+#include "MplaneTransceiver.h"
 
 
 extern "C"
@@ -269,6 +270,11 @@ extern "C"
     (*registered_functions)["uint32_t (*halmplane_set_cu_supervison_interval)(uint32_t)"]
     = (void*)halmplane_set_cu_supervison_interval; 
 
+   //MplaneTransceiver
+    (*registered_functions)["int (*halmplane_get_port_transceivers)"
+    "(port_transceivers_t*)"]
+    = (void*)halmplane_get_port_transceivers; 
+    
     return registered_functions;
   }
 }

@@ -1573,6 +1573,26 @@ uint32_t _halmplane_set_cu_supervison_interval(
   return NONE; 
 }
 
+int _halmplane_get_port_transceivers(port_transceivers_t* transceivers)
+{
+  capture_source_as_str(
+  int (*halmplane_get_port_transceivers)(port_transceivers_t*), ftag);
+  
+  halmplane_get_port_transceivers = (int (*)
+  (port_transceivers_t*))hal_loader->get_function(ftag);
+
+  if(halmplane_get_port_transceivers)
+  {
+    std::cout << "wrapper " ;
+    return halmplane_get_port_transceivers(transceivers);
+  }
+  else 
+  {
+    std::cout <<"function does not exist." << std::endl;
+  }
+  return NONE; 
+}
+
 void wrapper_halmplane_exit()
 {
   hal_loader->Hal_close();

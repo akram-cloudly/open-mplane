@@ -237,7 +237,14 @@ void test_MplaneModuleCapability()
 
 void test_MplaneSupervision()
 {
-    std::cout << "test_MplaneSupervision..." << std::endl;
+    std::cout << "test_MplaneSupervisionk..." << std::endl;
     _halmplane_get_cu_supervison_interval();
     _halmplane_set_cu_supervison_interval(0);
+}
+
+void test_MplaneTransceiver()
+{
+    std::cout << "test_MplaneTransceiver..." << std::endl;
+    port_transceivers_t* transceivers;
+    _halmplane_get_port_transceivers(transceivers);
 }
