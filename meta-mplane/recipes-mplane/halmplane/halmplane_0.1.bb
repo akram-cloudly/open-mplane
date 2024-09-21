@@ -12,6 +12,8 @@ S = "${WORKDIR}/libhalmplane"
 
 inherit cmake
 
+DEPENDS += "libtinyxml2"
+
 # set this as appropriate
 BUILD_BOARD ?= "example"
 

@@ -282,7 +282,7 @@ include_directories(yang-manager-server/yang-sysrepo/inc)
 
 # include_directories(wrapper_libhalmplane/inc)
 
-include(wrapper_libhalmplane/CMakeLists.txt)
+# include(wrapper_libhalmplane/CMakeLists.txt)
 
 ## application
 list(APPEND MPLANE_SERVER_SOURCES

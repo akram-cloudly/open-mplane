@@ -1,30 +1,53 @@
 #include <wrapper.h>
 #include <hal_loader.h>
+#include "libtinyxml2/tinyxml2.h"
+
+using namespace tinyxml2;
 
 const char* configured_libname = NULL;
 Hal_Loader* hal_loader = NULL;
 
 int wrapper_halmplane_init()
 {
-    // std::cout << "wrapper_halmplane_init loading...." << std::endl;
+    // std::cout << "wrapperhalmplane_init loading...." << std::endl;
+    XMLDocument doc;
+    if (doc.LoadFile("./usr/share/mplane-server/YangConfig.xml") != XML_SUCCESS) {
+        std::cerr << "Failed to load XML file!" << std::endl;
+        return -1;
+    }
+
+    // Navigate to the module-libhalmplane element
+    XMLElement* module = doc.FirstChildElement("root")->FirstChildElement("modular");
+    if (module) {
+        // Get the file element
+        const char* filename = module->FirstChildElement("file")->Attribute("value");
+        if (filename) {
+            std::cout << "Extracted filename: " << filename << std::endl;
+        } else {
+            std::cout << "Filename attribute not found!" << std::endl;
+        }
+    } else {
+        std::cout << "module-libhalmplane element not found!" << std::endl;
+    }
+
     if(configured_libname == NULL)
     {
-      configured_libname = "/usr/lib/libhalmplane.so.0.1.0";
+      configured_libname = "/lib/libhalmplane-mod-example.so.1.1.0";
       hal_loader = new Hal_Loader(configured_libname);
 
-      // std::cout << "wrapper_halmplane_init loaded successfully" << std::endl;
+      // std::cout << "wrapperhalmplane_init loaded successfully" << std::endl;
     }  
     return 0;
 }
 
-int _halmplane_init()
+int halmplane_init()
 {
   capture_source_as_str(int (*halmplane_init)(), ftag);
   // std::cout << "halmplane_init() of wrapper" << std::endl;
   halmplane_init = (int (*)()) hal_loader->get_function("int (*halmplane_init)()");
   if(halmplane_init)
   {
-    // std::cout << "halmplane pointer exi" << std::endl;
+    std::cout << "wrapper" << std::endl;
     int result = halmplane_init();
     return result;
   }
@@ -32,7 +55,7 @@ int _halmplane_init()
   return 0;
 }
 
-int _halmplane_exit()
+int halmplane_exit()
 {
   capture_source_as_str(int (*halmplane_exit)(), ftag);
   halmplane_exit = (int (*)()) hal_loader->get_function(ftag);
@@ -44,7 +67,7 @@ int _halmplane_exit()
   return 0;
 }
 
-halmplane_error_t _halmplane_interface_update(interface_t* interface)
+halmplane_error_t halmplane_interface_update(interface_t* interface)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update)(interface_t*), ftag);
   halmplane_interface_update = (halmplane_error_t (*)(interface_t*)) hal_loader->get_function(ftag);
@@ -61,7 +84,7 @@ halmplane_error_t _halmplane_interface_update(interface_t* interface)
 }
 
 
-halmplane_error_t _halmplane_interface_update_description(
+halmplane_error_t halmplane_interface_update_description(
       const char* name, const char* description)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update_description)(const char*, const char*), ftag);
@@ -76,7 +99,7 @@ halmplane_error_t _halmplane_interface_update_description(
   return NONE;
 }
 
-halmplane_error_t _halmplane_interface_update_type(
+halmplane_error_t halmplane_interface_update_type(
       const char* name, const char* type)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update_type)(const char*, const char*), ftag);
@@ -95,7 +118,7 @@ halmplane_error_t _halmplane_interface_update_type(
   return NONE;
 }
 
-halmplane_error_t _halmplane_interface_update_enabled(
+halmplane_error_t halmplane_interface_update_enabled(
   const char* name, bool enabled)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update_enabled)(const char*, bool), ftag);
@@ -115,7 +138,7 @@ halmplane_error_t _halmplane_interface_update_enabled(
 
 }
 
-halmplane_error_t _halmplane_interface_update_l2_mtu(
+halmplane_error_t halmplane_interface_update_l2_mtu(
   const char* name, int l2Mtu)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update_l2_mtu)(const char*, int), ftag);
@@ -134,7 +157,7 @@ halmplane_error_t _halmplane_interface_update_l2_mtu(
   return NONE;
 }
 
-halmplane_error_t _halmplane_interface_update_vlan_tagging(
+halmplane_error_t halmplane_interface_update_vlan_tagging(
   const char* name, bool vlanTagging)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update_vlan_tagging)(const char*, bool), ftag);
@@ -153,7 +176,7 @@ halmplane_error_t _halmplane_interface_update_vlan_tagging(
   return NONE;
 }
 
-halmplane_error_t _halmplane_interface_update_base_interface(
+halmplane_error_t halmplane_interface_update_base_interface(
   const char* name, const char* baseInterface)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update_base_interface)(const char*, const char*), ftag);
@@ -172,7 +195,7 @@ halmplane_error_t _halmplane_interface_update_base_interface(
   return NONE;
 }
 
-halmplane_error_t _halmplane_interface_update_vlan_id(
+halmplane_error_t halmplane_interface_update_vlan_id(
   const char* name, int vlanId)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update_vlan_id)(const char*, int), ftag);
@@ -191,7 +214,7 @@ halmplane_error_t _halmplane_interface_update_vlan_id(
   return NONE;
 }
 
-halmplane_error_t _halmplane_interface_update_mac_address(
+halmplane_error_t halmplane_interface_update_mac_address(
   const char* name, const char* macAddress)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_interface_update_mac_address)(const char*, const char*), ftag);
@@ -211,7 +234,7 @@ halmplane_error_t _halmplane_interface_update_mac_address(
 }
 
 // //MplaneProcessingElements module api
-halmplane_error_t _halmplane_update_ru_element(ru_elements_t* ru_element)
+halmplane_error_t halmplane_update_ru_element(ru_elements_t* ru_element)
 {
   capture_source_as_str(halmplane_error_t (*halmplane_update_ru_element)(ru_elements_t*), ftag);
   
@@ -230,7 +253,7 @@ halmplane_error_t _halmplane_update_ru_element(ru_elements_t* ru_element)
 }
 
 // // MplaneUplaneConf 
-int _halmplane_get_tx_array(const char* name, tx_array_t* tx_array)
+int halmplane_get_tx_array(const char* name, tx_array_t* tx_array)
 {
   capture_source_as_str(int (*halmplane_get_tx_array)(const char*, tx_array_t*), ftag);
   
@@ -248,7 +271,7 @@ int _halmplane_get_tx_array(const char* name, tx_array_t* tx_array)
   return 0;
 }
 
-const char** _halmplane_get_tx_array_names()
+const char** halmplane_get_tx_array_names()
 {
   capture_source_as_str(const char** (*halmplane_get_tx_array_names)(), ftag);
   
@@ -266,7 +289,7 @@ const char** _halmplane_get_tx_array_names()
   return 0;
 }
 
-int _halmplane_get_low_level_tx_endpoint(const char* name, low_level_tx_endpoint_t* tx_endpoint)
+int halmplane_get_low_level_tx_endpoint(const char* name, low_level_tx_endpoint_t* tx_endpoint)
 {
   capture_source_as_str(int (*halmplane_get_low_level_tx_endpoint)(const char*, low_level_tx_endpoint_t*), ftag);
   
@@ -284,7 +307,7 @@ int _halmplane_get_low_level_tx_endpoint(const char* name, low_level_tx_endpoint
   return 0;
 }
 
-int _halmplane_get_low_level_tx_endpoints(low_level_tx_endpoint_t** tx_endpoints, int* n_endpoints)
+int halmplane_get_low_level_tx_endpoints(low_level_tx_endpoint_t** tx_endpoints, int* n_endpoints)
 {
   capture_source_as_str(int (*halmplane_get_low_level_tx_endpoints)(low_level_tx_endpoint_t**, int*), ftag);
   
@@ -302,7 +325,7 @@ int _halmplane_get_low_level_tx_endpoints(low_level_tx_endpoint_t** tx_endpoints
   return 0;  
 }
 
-int _halmplane_get_rx_array(const char* name, rx_array_t* rx_arrays)
+int halmplane_get_rx_array(const char* name, rx_array_t* rx_arrays)
 {
   capture_source_as_str(int (*halmplane_get_rx_array)(const char*, rx_array_t*), ftag);
   
@@ -320,7 +343,7 @@ int _halmplane_get_rx_array(const char* name, rx_array_t* rx_arrays)
   return 0;
 }
 
-const char** _halmplane_get_rx_array_names()
+const char** halmplane_get_rx_array_names()
 {
   capture_source_as_str(const char** (*halmplane_get_rx_array_names)(), ftag);
   
@@ -338,7 +361,7 @@ const char** _halmplane_get_rx_array_names()
   return 0;  
 }
 
-int _halmplane_get_low_level_rx_endpoint(
+int halmplane_get_low_level_rx_endpoint(
     const char* name, low_level_rx_endpoint_t* rx_endpoint)
 {
   capture_source_as_str(int (*halmplane_get_low_level_rx_endpoint)(const char*, low_level_rx_endpoint_t*), ftag);
@@ -357,7 +380,7 @@ int _halmplane_get_low_level_rx_endpoint(
   return 0;  
 }
 
-int _halmplane_get_low_level_rx_endpoints(
+int halmplane_get_low_level_rx_endpoints(
     low_level_rx_endpoint_t** rx_endpoints, int* n_endpoints)
 {
   capture_source_as_str(
@@ -379,7 +402,7 @@ int _halmplane_get_low_level_rx_endpoints(
   return 0;   
 }
 
-int _halmplane_tx_carrier_state_change(
+int halmplane_tx_carrier_state_change(
     const char* name,
     uint64_t chbw,
     uint64_t center,
@@ -407,7 +430,7 @@ int _halmplane_tx_carrier_state_change(
   return 0;
 }
 
-int _halmplane_rx_carrier_state_change(
+int halmplane_rx_carrier_state_change(
     const char* name,
     uint64_t chbw,
     uint64_t center,
@@ -435,7 +458,7 @@ int _halmplane_rx_carrier_state_change(
   return 0;
 }
 
-int _halmplane_setUPlaneConfiguration(user_plane_configuration_t* uplane_cfg)
+int halmplane_setUPlaneConfiguration(user_plane_configuration_t* uplane_cfg)
 {
   capture_source_as_str(
     int (*halmplane_setUPlaneConfiguration)(user_plane_configuration_t*), ftag);
@@ -455,7 +478,7 @@ int _halmplane_setUPlaneConfiguration(user_plane_configuration_t* uplane_cfg)
   return 0;  
 }
 
-int _halmplane_update_tx_eaxc(const char* endpoint_name, e_axcid_t* eaxc)
+int halmplane_update_tx_eaxc(const char* endpoint_name, e_axcid_t* eaxc)
 {
   capture_source_as_str(
     int (*halmplane_update_tx_eaxc)(const char*, e_axcid_t*), ftag);
@@ -475,7 +498,7 @@ int _halmplane_update_tx_eaxc(const char* endpoint_name, e_axcid_t* eaxc)
   return 0;   
 }
 
-int _halmplane_update_rx_eaxc(const char* endpoint_name, e_axcid_t* eaxc)
+int halmplane_update_rx_eaxc(const char* endpoint_name, e_axcid_t* eaxc)
 {
   capture_source_as_str(
     int (*halmplane_update_rx_eaxc)(const char*, e_axcid_t*), ftag);
@@ -495,7 +518,7 @@ int _halmplane_update_rx_eaxc(const char* endpoint_name, e_axcid_t* eaxc)
   return 0; 
 }
 
-int _halmplane_update_rx_endpoint_compression(
+int halmplane_update_rx_endpoint_compression(
     const char* endpoint_name, compression_t* compression)
 {
   capture_source_as_str(
@@ -516,7 +539,7 @@ int _halmplane_update_rx_endpoint_compression(
   return 0;
 }
 
-int _halmplane_update_tx_endpoint_compression(
+int halmplane_update_tx_endpoint_compression(
     const char* endpoint_name, compression_t* compression)
 {
   capture_source_as_str(
@@ -537,7 +560,7 @@ int _halmplane_update_tx_endpoint_compression(
   return 0;
 }
 
-int _halmplane_update_rx_endpoint_compression_dyn_config(
+int halmplane_update_rx_endpoint_compression_dyn_config(
     const char* endpoint_name, dynamic_compression_configuration_t* config)
 {
   capture_source_as_str(
@@ -558,7 +581,7 @@ int _halmplane_update_rx_endpoint_compression_dyn_config(
   return 0;  
 }
 
-int _halmplane_update_tx_endpoint_compression_dyn_config(
+int halmplane_update_tx_endpoint_compression_dyn_config(
     const char* endpoint_name, dynamic_compression_configuration_t* config)
 {
   capture_source_as_str(
@@ -579,7 +602,7 @@ int _halmplane_update_tx_endpoint_compression_dyn_config(
   return 0; 
 }
 
-int _halmplane_register_rx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
+int halmplane_register_rx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 {
   capture_source_as_str(
     int (*halmplane_register_rx_carrier_state_cb)(halmplane_carrier_state_cb_t), ftag);
@@ -599,7 +622,7 @@ int _halmplane_register_rx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
   return 0; 
 }
 
-int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
+int halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 {
   capture_source_as_str(
     int (*halmplane_register_tx_carrier_state_cb)(halmplane_carrier_state_cb_t), ftag);
@@ -621,7 +644,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 
 //MplaneAlarms
 
-// int _halmplane_registerOranAlarmCallback(halmplane_oran_alarm_cb_t callback) 
+// int halmplane_registerOranAlarmCallback(halmplane_oran_alarm_cb_t callback) 
 // {
 //   capture_source_as_str(
 //   int (*halmplane_registerOranAlarmCallback)(halmplane_oran_alarm_cb_t), ftag);
@@ -643,7 +666,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 
 //MplaneEcpri
 
-// bool _halmplane_message5Enabled(void)
+// bool halmplane_message5Enabled(void)
 // {
 //   capture_source_as_str(
 //   bool (*halmplane_message5Enabled)(void), ftag);
@@ -663,7 +686,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return 0;
 // }
 // #if 0
-// bool _halmplane_set_ietf_hardware (halmplane_oran_hardware_t hw)
+// bool halmplane_set_ietf_hardware (halmplane_oran_hardware_t hw)
 // {
 //   capture_source_as_str(
 //   bool (*halmplane_set_ietf_hardware)(halmplane_oran_hardware_t), ftag);
@@ -682,7 +705,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // #endif 
 
 // //MplaneExternalio
-// halmplane_error_t _halmplane_get_io_value(external_io_t* io)
+// halmplane_error_t halmplane_get_io_value(external_io_t* io)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_io_value)(external_io_t*), ftag);
@@ -702,7 +725,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;  
 // }
 
-// halmplane_error_t _halmplane_set_io_value(output_setting_t* out_setting)
+// halmplane_error_t halmplane_set_io_value(output_setting_t* out_setting)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_set_io_value)(output_setting_t*), ftag);
@@ -724,7 +747,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 
 // // //MplanePerformanceMgmt
 
-// // int _halmplane_activateEpeMeasObjects(
+// // int halmplane_activateEpeMeasObjects(
 // //     epe_measurement_objects_t config, halmplane_epe_meas_cb_t cb)
 // // {
 // //   capture_source_as_str(
@@ -745,7 +768,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //   return NONE;  
 // // }
 
-// // int _halmplane_registerOranPerfMeasCallback(halmplane_oran_perf_meas_cb_t callback)
+// // int halmplane_registerOranPerfMeasCallback(halmplane_oran_perf_meas_cb_t callback)
 // // {
 // // capture_source_as_str(
 // //   int (*halmplane_registerOranPerfMeasCallback)(halmplane_oran_perf_meas_cb_t), ftag);
@@ -785,7 +808,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //   return 0;  
 // // }
 
-// // int _halmplane_getRssi(uint8_t interface, double* rssiValue)
+// // int halmplane_getRssi(uint8_t interface, double* rssiValue)
 // // {
 // //   capture_source_as_str(
 // //     int (*halmplane_getRssi)(uint8_t, double*), ftag);
@@ -805,7 +828,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //     return 0;  
 // // }
 
-// // int _halmplane_configPerfMeasurementParams(
+// // int halmplane_configPerfMeasurementParams(
 // //     performance_measurement_params_t* config)
 // // {
 // //   capture_source_as_str(
@@ -826,7 +849,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //     return 0;
 // // }
 
-// // int _halmplane_activateTransceiverMeasObjects(
+// // int halmplane_activateTransceiverMeasObjects(
 // //     transceiver_measurement_objects_t config,
 // //     halmplane_transceiver_meas_cb_t cb)
 // // {
@@ -848,7 +871,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //     return 0;
 // // }
 
-// // int _halmplane_activateRxWindowMeasObjects(
+// // int halmplane_activateRxWindowMeasObjects(
 // //     rx_window_measurement_objects_t config,
 // //     halmplane_rx_window_meas_cb_t cb)
 // // {
@@ -870,7 +893,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //     return 0;
 // // }
 
-// // int _halmplane_activateTxMeasObjects(
+// // int halmplane_activateTxMeasObjects(
 // //     const tx_measurement_objects_t config,
 // //     halmplane_tx_stats_meas_cb_t cb)
 // // {
@@ -893,7 +916,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // // }
 
 // //MplaneHardware
-// halmplane_error_t _halmplane_get_energysaving_state(hw_component_t *hw_comp)
+// halmplane_error_t halmplane_get_energysaving_state(hw_component_t *hw_comp)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_energysaving_state)(hw_component_t*), ftag);
@@ -913,7 +936,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;   
 // }
 
-// halmplane_error_t _halmplane_get_availability_type(hw_component_t* hw_comp)
+// halmplane_error_t halmplane_get_availability_type(hw_component_t* hw_comp)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_availability_type)(hw_component_t*), ftag);
@@ -932,7 +955,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;  
 // }
 
-// halmplane_error_t _halmplane_get_label_content(hw_component_t* hw_comp)
+// halmplane_error_t halmplane_get_label_content(hw_component_t* hw_comp)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_label_content)(hw_component_t*), ftag);
@@ -951,7 +974,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;   
 // }
 
-// halmplane_error_t _halmplane_get_product_code(hw_component_t* hw_comp)
+// halmplane_error_t halmplane_get_product_code(hw_component_t* hw_comp)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_product_code)(hw_component_t*), ftag);
@@ -970,7 +993,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;
 // }
 
-// halmplane_error_t _halmplane_is_energy_saving_enabled(hw_component_t* hw_comp)
+// halmplane_error_t halmplane_is_energy_saving_enabled(hw_component_t* hw_comp)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_is_energy_saving_enabled)(hw_component_t*), ftag);
@@ -989,7 +1012,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;
 // }
 
-// halmplane_error_t _halmplane_get_dying_gasp_support(hw_component_t* hw_comp)
+// halmplane_error_t halmplane_get_dying_gasp_support(hw_component_t* hw_comp)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_dying_gasp_support)(hw_component_t*), ftag);
@@ -1008,7 +1031,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;
 // }
 
-// halmplane_error_t _halmplane_get_last_service_date(hw_component_t* hw_comp)
+// halmplane_error_t halmplane_get_last_service_date(hw_component_t* hw_comp)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_last_service_date)(hw_component_t*), ftag);
@@ -1026,7 +1049,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   }
 //   return NONE;
 // }
-// halmplane_error_t _halmplane_get_o_ran_name(hw_component_t* hw_comp)
+// halmplane_error_t halmplane_get_o_ran_name(hw_component_t* hw_comp)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_o_ran_name)(hw_component_t*), ftag);
@@ -1045,7 +1068,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;
 // }
 
-// bool _halmplane_get_ietf_hardware(ietf_hardware_t* hw)
+// bool halmplane_get_ietf_hardware(ietf_hardware_t* hw)
 // {
 //   capture_source_as_str(
 //   bool (*halmplane_get_ietf_hardware)(ietf_hardware_t*), ftag);
@@ -1065,7 +1088,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 
 // }
 
-// int _halmplane_registerHwStateChange(
+// int halmplane_registerHwStateChange(
 //     halmplane_notificationHwStateChange_cb_t cb)
 // {
 //   capture_source_as_str(
@@ -1085,7 +1108,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;  
 // }
 
-// int _halmplane_registerHwStateOper(
+// int halmplane_registerHwStateOper(
 //     halmplane_notificationHwStateOper_cb_t cb)
 // {
 //   capture_source_as_str(
@@ -1106,7 +1129,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // }
 
 // // //MplaneFan 
-// // halmplane_error_t _halmplane_get_fan_present_and_operating(
+// // halmplane_error_t halmplane_get_fan_present_and_operating(
 // //     fan_state_t* fan_state)
 // // {
 // //   capture_source_as_str(
@@ -1126,7 +1149,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //   return NONE;  
 // // }
 
-// // halmplane_error_t _halmplane_get_fan_name(
+// // halmplane_error_t halmplane_get_fan_name(
 // //     fan_state_t* fan_state)
 // // {
 // //   capture_source_as_str(
@@ -1146,7 +1169,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //   return NONE;  
 // // }
 
-// // halmplane_error_t _halmplane_get_fan_location(
+// // halmplane_error_t halmplane_get_fan_location(
 // //     fan_state_t* fan_state)
 // // {
 // //   capture_source_as_str(
@@ -1166,7 +1189,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //   return NONE;  
 // // }
 
-// // halmplane_error_t _halmplane_get_fan_vendor_code(
+// // halmplane_error_t halmplane_get_fan_vendor_code(
 // //     fan_state_t* fan_state)
 // // {
 // //   capture_source_as_str(
@@ -1186,7 +1209,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //   return NONE;  
 // // }
 
-// // halmplane_error_t _halmplane_get_fan_speed(
+// // halmplane_error_t halmplane_get_fan_speed(
 // //     fan_state_t* fan_state)
 // // {
 // //   capture_source_as_str(
@@ -1206,7 +1229,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // //   return NONE;  
 // // }
 
-// // halmplane_error_t _halmplane_get_fan_target_speed(
+// // halmplane_error_t halmplane_get_fan_target_speed(
 // //     fan_state_t* fan_state)
 // // {
 // //   capture_source_as_str(
@@ -1227,7 +1250,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // // }
 
 // //MplaneAntennaCalibrtion
-// halmplane_error_t _halmplane_start_antenna_calibration(
+// halmplane_error_t halmplane_start_antenna_calibration(
 //     const antenna_calibration_data_t* antenna_data)
 // {
 //   capture_source_as_str(
@@ -1249,7 +1272,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 
 // //MplaneAld
 
-// halmplane_error_t _halmplane_ald_get_counters(
+// halmplane_error_t halmplane_ald_get_counters(
 //     const halmplane_ald_communication_output_t* ald_status)
 // {
 //   capture_source_as_str(
@@ -1269,7 +1292,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;   
 // }
 
-// halmplane_error_t _halmplane_ald_get_status(
+// halmplane_error_t halmplane_ald_get_status(
 //     const halmplane_ald_communication_output_t* ald_status)
 // {
 //   capture_source_as_str(
@@ -1289,7 +1312,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;   
 // }
 
-// halmplane_error_t _halmplane_ald_response(
+// halmplane_error_t halmplane_ald_response(
 //     halmplane_ald_communication_input_s* ald_req, uint16_t msg_size)
 // {
 //   capture_source_as_str(
@@ -1309,7 +1332,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;  
 // }
 
-// halmplane_error_t _halmplane_ald_set_receive_mode(
+// halmplane_error_t halmplane_ald_set_receive_mode(
 //     halmplane_ald_communication_input_s* ald_req, uint16_t msg_size)
 // {
 //   capture_source_as_str(
@@ -1329,7 +1352,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;   
 // }
 
-// halmplane_error_t _halmplane_ald_request(
+// halmplane_error_t halmplane_ald_request(
 //     halmplane_ald_communication_input_t* ald_req, uint16_t msg_size)
 // {
 //   capture_source_as_str(
@@ -1350,7 +1373,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 // }
 
 // //MplaneBeamforming.h
-// halmplane_error_t _halmplane_apply_beamforming_file(char* filepath)
+// halmplane_error_t halmplane_apply_beamforming_file(char* filepath)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_apply_beamforming_file)(char*), ftag);
@@ -1370,7 +1393,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE; 
 // }
 
-// halmplane_error_t _halmplane_set_ptp_config(const ptp_config_t ptp_config)
+// halmplane_error_t halmplane_set_ptp_config(const ptp_config_t ptp_config)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_set_ptp_config)(const ptp_config_t), ftag);
@@ -1390,7 +1413,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE; 
 // }
 
-// halmplane_error_t _halmplane_get_ptp_status(ptp_status_t* ptp_status)
+// halmplane_error_t halmplane_get_ptp_status(ptp_status_t* ptp_status)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_ptp_status)(ptp_status_t*), ftag);
@@ -1410,7 +1433,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE; 
 // }
 
-// halmplane_error_t _halmplane_set_synce_config(const synce_config_t synce_config)
+// halmplane_error_t halmplane_set_synce_config(const synce_config_t synce_config)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_set_synce_config)(const synce_config_t), ftag);
@@ -1430,7 +1453,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;   
 // }
 
-// halmplane_error_t _halmplane_get_synce_status(synce_status_t* synce_status)
+// halmplane_error_t halmplane_get_synce_status(synce_status_t* synce_status)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_synce_status)(synce_status_t*), ftag);
@@ -1450,7 +1473,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;  
 // }
 
-// halmplane_error_t _halmplane_set_gnss_config(const gnss_config_t gnss_config)
+// halmplane_error_t halmplane_set_gnss_config(const gnss_config_t gnss_config)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_set_gnss_config)(const gnss_config_t), ftag);
@@ -1470,7 +1493,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;  
 // }
 
-// halmplane_error_t _halmplane_get_gnss_status(gnss_status_t* gnss_status)
+// halmplane_error_t halmplane_get_gnss_status(gnss_status_t* gnss_status)
 // {
 //   capture_source_as_str(
 //   halmplane_error_t (*halmplane_get_gnss_status)(gnss_status_t*), ftag);
@@ -1492,7 +1515,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 
 // //MplaneDelayMgmt
 
-// int _halmplane_setDUToRUDelayMgmnt(o_ru_delay_management_s* ru_delay_mgmt)
+// int halmplane_setDUToRUDelayMgmnt(o_ru_delay_management_s* ru_delay_mgmt)
 // {
 //   capture_source_as_str(
 //   int (*halmplane_setDUToRUDelayMgmnt)(o_ru_delay_management_s*), ftag);
@@ -1514,7 +1537,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 
 // //MplaneModuleCapability
 
-// int _halmplane_setDUToRUModuleCapability(module_capability_t* mod_capability)
+// int halmplane_setDUToRUModuleCapability(module_capability_t* mod_capability)
 // {
 //   capture_source_as_str(
 //   int (*halmplane_setDUToRUModuleCapability)(module_capability_t*), ftag);
@@ -1534,7 +1557,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE;    
 // }
 
-// uint32_t _halmplane_get_cu_supervison_interval(void)
+// uint32_t halmplane_get_cu_supervison_interval(void)
 // {
 //   capture_source_as_str(
 //   uint32_t (*halmplane_get_cu_supervison_interval)(void), ftag);
@@ -1554,7 +1577,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE; 
 // }
 
-// uint32_t _halmplane_set_cu_supervison_interval(
+// uint32_t halmplane_set_cu_supervison_interval(
 //     uint32_t cu_monitoring_interval)
 // {
 //   capture_source_as_str(
@@ -1575,7 +1598,7 @@ int _halmplane_register_tx_carrier_state_cb(halmplane_carrier_state_cb_t cb)
 //   return NONE; 
 // }
 
-void wrapper_halmplane_exit()
+void wrapperhalmplane_exit()
 {
   hal_loader->Hal_close();
 }

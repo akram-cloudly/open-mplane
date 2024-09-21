@@ -66,8 +66,10 @@ elseif( "${CONTEXT}" STREQUAL "YOCTO")
   )
 
   add_subdirectory(hal-common)
-  include(${BOARD}/CMakeLists.txt)
-  include(hal-api/CMakeLists.txt)
+  # include(${BOARD}/CMakeLists.txt)
+  # include(hal-api/CMakeLists.txt)
+  
+  include(modular/CMakeLists.txt)
   target_include_directories(halmplane PUBLIC hal-common/inc)
   target_include_directories(halmplane PUBLIC inc)
   install(
@@ -94,11 +96,21 @@ elseif( "${CONTEXT}" STREQUAL "YOCTO")
       inc/MplaneSync.h
       inc/HalMplane.h
       inc/MplaneAld.h
+      modular/inc/wrapper.h
+      modular/inc/test_wrapper.h
+      # modualr/inc/hal_loader.h
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   )
+  
+  find_library(DL dl)
+  find_library(TINYXML2 tinyxml2)
 
   install(TARGETS halmplane
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  )
+  target_link_libraries(halmplane
+  ${DL}
+  ${TINYXML2}
   )
 elseif( "${CONTEXT}" STREQUAL "MODULE")
   set(CMAKE_CXX_STANDARD 17)

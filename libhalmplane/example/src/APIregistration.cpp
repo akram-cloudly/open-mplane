@@ -12,7 +12,9 @@ extern "C"
   void *function_map()
   {
     std::map<std::string, void*> *registered_functions;
-    //Halmplane
+    registered_functions = new std::map<std::string, void*>();
+
+    //Halmplane 
     (*registered_functions)["int (*halmplane_init)()"] = (void*) halmplane_init;
     (*registered_functions)["int (*halmplane_exit)()"] = (void*) halmplane_exit; 
     

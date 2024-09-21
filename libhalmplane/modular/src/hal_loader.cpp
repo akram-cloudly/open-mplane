@@ -8,7 +8,7 @@ Hal_Loader::Hal_Loader(const char* _libname)
     libname = _libname;
   if(libname)
     {
-      dlhandle = dlopen("/usr/lib/libhalmplane.so.0.1.0", RTLD_NOW | RTLD_GLOBAL);
+      dlhandle = dlopen("lib/libhalmplane-mod-example.so.1.1.0", RTLD_NOW | RTLD_GLOBAL);
     
       if (!dlhandle) 
       {
@@ -19,7 +19,7 @@ Hal_Loader::Hal_Loader(const char* _libname)
       if(rf)
       {
         // rf();
-        // std::cout <<"success full" << std::endl;
+        std::cout <<"success full" << std::endl;
         registered_functions = (std::map<std::string, void*>*) rf();
       }
       else
