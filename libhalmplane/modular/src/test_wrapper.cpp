@@ -88,156 +88,163 @@ void test_MplaneUplaneConf()
     halmplane_register_tx_carrier_state_cb(cb);
 }
 
-// void test_MplaneAlarms()
-// {
-//     std::cout << "test_MplaneAlarms loading..." << std::endl;
-//     halmplane_oran_alarm_cb_t callback;
-//     halmplane_registerOranAlarmCallback(callback);
-// }
+void test_MplaneAlarms()
+{
+    std::cout << "test_MplaneAlarms loading..." << std::endl;
+    halmplane_oran_alarm_cb_t callback;
+    halmplane_registerOranAlarmCallback(callback);
+}
 
-// void test_MplaneEcpri()
-// {
-//     std::cout << "test_MplaneEcpri loading..." << std::endl;
-//     halmplane_message5Enabled();
+void test_MplaneEcpri()
+{
+    std::cout << "test_MplaneEcpri loading..." << std::endl;
+    halmplane_message5Enabled();
 
-//     #if 0
-//     halmplane_oran_hardware_t hw;
-//     halmplane_set_ietf_hardware (hw);
-//     #endif
-// }
+    #if 0
+    halmplane_oran_hardware_t hw;
+    halmplane_set_ietf_hardware (hw);
+    #endif
+}
 
-// void test_MplaneExternalio()
-// {
-//     std::cout << "test_MplaneExternalio loading..." << std::endl;
-//     external_io_t *io = NULL;
-//     output_setting_t* out_setting = NULL;
-//     halmplane_get_io_value(io);
-//     halmplane_set_io_value(out_setting);
-// }
+void test_MplaneExternalio()
+{
+    std::cout << "test_MplaneExternalio loading..." << std::endl;
+    external_io_t *io = NULL;
+    output_setting_t* out_setting = NULL;
+    halmplane_get_io_value(io);
+    halmplane_set_io_value(out_setting);
+}
 
-// void test_MplanePerformanceMgmt()
-// {
-//     // std::cout << "test_MplanePerformanceMgmt loading..." << std::endl;
-//     // epe_measurement_objects_t config;
-//     // halmplane_epe_meas_cb_t cb;
-//     // halmplane_oran_perf_meas_cb_t callback;
-//     // uint8_t interface;
-//     // double* rssiValue;
-//     // performance_measurement_params_t* performance_config;
-//     // transceiver_measurement_objects_t transceiver_config;
-//     // halmplane_transceiver_meas_cb_t transceiver_cb;
-//     // rx_window_measurement_objects_t rx_window_config;
-//     // halmplane_rx_window_meas_cb_t rx_window_cb;
-//     // tx_measurement_objects_t tx_measurement_config;
-//     // halmplane_tx_stats_meas_cb_t tx_measurement_cb;
+void test_MplanePerformanceMgmt()
+{
+    // std::cout << "test_MplanePerformanceMgmt loading..." << std::endl;
+    // epe_measurement_objects_t config;
+    // halmplane_epe_meas_cb_t cb;
+    // halmplane_oran_perf_meas_cb_t callback;
+    // uint8_t interface;
+    // double* rssiValue;
+    // performance_measurement_params_t* performance_config;
+    // transceiver_measurement_objects_t transceiver_config;
+    // halmplane_transceiver_meas_cb_t transceiver_cb;
+    // rx_window_measurement_objects_t rx_window_config;
+    // halmplane_rx_window_meas_cb_t rx_window_cb;
+    // tx_measurement_objects_t tx_measurement_config;
+    // halmplane_tx_stats_meas_cb_t tx_measurement_cb;
     
-//     // halmplane_getRssi(interface, rssiValue);
-//     // // int config, cb;
-//     // halmplane_activateEpeMeasObjects(config, cb);
-//     // _get_perf_meas_cb_ptr();
-//     // halmplane_registerOranPerfMeasCallback(callback);
-//     // halmplane_configPerfMeasurementParams(performance_config);
-//     // halmplane_activateTransceiverMeasObjects(transceiver_config, transceiver_cb);
-//     // halmplane_activateRxWindowMeasObjects(rx_window_config, rx_window_cb);
-//     // halmplane_activateTxMeasObjects(tx_measurement_config,tx_measurement_cb);
-// }
+    // halmplane_getRssi(interface, rssiValue);
+    // // int config, cb;
+    // halmplane_activateEpeMeasObjects(config, cb);
+    // _get_perf_meas_cb_ptr();
+    // halmplane_registerOranPerfMeasCallback(callback);
+    // halmplane_configPerfMeasurementParams(performance_config);
+    // halmplane_activateTransceiverMeasObjects(transceiver_config, transceiver_cb);
+    // halmplane_activateRxWindowMeasObjects(rx_window_config, rx_window_cb);
+    // halmplane_activateTxMeasObjects(tx_measurement_config,tx_measurement_cb);
+}
 
-// //MplaneHardware
-// void test_MplaneHardwae()
-// {
-//     std::cout << "test_MplaneHardwae() ..." << std::endl;
-//     hw_component_t *hw_comp;
-//     ietf_hardware_t* hw;
-//     halmplane_notificationHwStateChange_cb_t cb;
-//     halmplane_notificationHwStateOper_cb_t Oper_cb;
+//MplaneHardware
+void test_MplaneHardwae()
+{
+    std::cout << "test_MplaneHardwae() ..." << std::endl;
+    hw_component_t *hw_comp;
+    ietf_hardware_t* hw;
+    halmplane_notificationHwStateChange_cb_t cb;
+    halmplane_notificationHwStateOper_cb_t Oper_cb;
 
-//     halmplane_get_energysaving_state(hw_comp);
-//     halmplane_get_availability_type(hw_comp);
-//     halmplane_get_label_content(hw_comp);
-//     halmplane_get_product_code(hw_comp);
-//     halmplane_is_energy_saving_enabled(hw_comp);
-//     halmplane_get_dying_gasp_support(hw_comp);
-//     halmplane_get_last_service_date(hw_comp);
-//     halmplane_get_o_ran_name(hw_comp);
-//     halmplane_get_ietf_hardware(hw);
-//     halmplane_registerHwStateChange(cb);
-//     halmplane_registerHwStateOper(Oper_cb);
-// }
+    halmplane_get_energysaving_state(hw_comp);
+    halmplane_get_availability_type(hw_comp);
+    halmplane_get_label_content(hw_comp);
+    halmplane_get_product_code(hw_comp);
+    halmplane_is_energy_saving_enabled(hw_comp);
+    halmplane_get_dying_gasp_support(hw_comp);
+    halmplane_get_last_service_date(hw_comp);
+    halmplane_get_o_ran_name(hw_comp);
+    halmplane_get_ietf_hardware(hw);
+    halmplane_registerHwStateChange(cb);
+    halmplane_registerHwStateOper(Oper_cb);
+}
 
-// void test_MplaneFan()
-// {
-//     // std::cout << std::endl << "Test_MplaneFan()..." << std::endl;
-//     // fan_state_t* fan_state;
-//     // halmplane_get_fan_present_and_operating(fan_state);
-//     // halmplane_get_fan_name(fan_state);
-//     // halmplane_get_fan_location(fan_state);
-//     // halmplane_get_fan_vendor_code(fan_state);
-//     // halmplane_get_fan_speed(fan_state);
-//     // halmplane_get_fan_target_speed(fan_state);
-// }
+void test_MplaneFan()
+{
+    // std::cout << std::endl << "Test_MplaneFan()..." << std::endl;
+    // fan_state_t* fan_state;
+    // halmplane_get_fan_present_and_operating(fan_state);
+    // halmplane_get_fan_name(fan_state);
+    // halmplane_get_fan_location(fan_state);
+    // halmplane_get_fan_vendor_code(fan_state);
+    // halmplane_get_fan_speed(fan_state);
+    // halmplane_get_fan_target_speed(fan_state);
+}
 
-// void test_MplaneAntennaCalibration()
-// {
-//     antenna_calibration_data_t* antenna_data;
-//     std::cout <<std::endl << "test_MplaneAntennaCalibration() ..." << std::endl;
-//     halmplane_start_antenna_calibration(antenna_data);
-// }
+void test_MplaneAntennaCalibration()
+{
+    antenna_calibration_data_t* antenna_data;
+    std::cout <<std::endl << "test_MplaneAntennaCalibration() ..." << std::endl;
+    halmplane_start_antenna_calibration(antenna_data);
+}
 
-// void test_MplaneAld()
-// {
-//     std::cout << "test_MplaneAld ...." << std::endl;
-//     const halmplane_ald_communication_output_t* ald_status;
-//     halmplane_ald_communication_input_s* ald_req;
-//     uint16_t msg_size;
+void test_MplaneAld()
+{
+    std::cout << "test_MplaneAld ...." << std::endl;
+    halmplane_ald_communication_output_t* ald_status;
+    halmplane_ald_communication_input_s* ald_req;
+    uint16_t msg_size;
     
-//     halmplane_ald_get_counters(ald_status);
-//     halmplane_ald_get_status(ald_status);
-//     halmplane_ald_response(ald_req, msg_size);
-//     halmplane_ald_set_receive_mode(ald_req, msg_size);
-//     halmplane_ald_request(ald_req, msg_size);
-// }
+    halmplane_ald_get_counters(ald_status);
+    halmplane_ald_get_status(ald_status);
+    halmplane_ald_response(ald_req, msg_size);
+    halmplane_ald_set_receive_mode(ald_req, msg_size);
+    halmplane_ald_request(ald_req, msg_size);
+}
 
-// void test_MplaneBeamforming()
-// {
-//     std::cout << "test_MplaneBeamforming ...." << std::endl;
-//     char* filepath;
-//     halmplane_apply_beamforming_file(filepath);
-// }
+void test_MplaneBeamforming()
+{
+    std::cout << "test_MplaneBeamforming ...." << std::endl;
+    char* filepath;
+    halmplane_apply_beamforming_file(filepath);
+}
 
-// void test_MplaneSync()
-// {
-//     std::cout << "test_MplaneBeamforming ...." << std::endl;
-//     ptp_config_t ptp_config;
-//     ptp_status_t* ptp_status;
-//     synce_config_t synce_config;
-//     synce_status_t* synce_status;
-//     gnss_status_t* gnss_status;
+void test_MplaneSync()
+{
+    std::cout << "test_MplaneBeamforming ...." << std::endl;
+    ptp_config_t ptp_config;
+    ptp_status_t* ptp_status;
+    synce_config_t synce_config;
+    synce_status_t* synce_status;
+    gnss_status_t* gnss_status;
 
-//     halmplane_set_ptp_config(ptp_config);
-//     halmplane_get_ptp_status(ptp_status);
-//     halmplane_set_synce_config(synce_config);
-//     halmplane_get_synce_status(synce_status);
-//     halmplane_get_gnss_status(gnss_status);
-// }
+    halmplane_set_ptp_config(ptp_config);
+    halmplane_get_ptp_status(ptp_status);
+    halmplane_set_synce_config(synce_config);
+    halmplane_get_synce_status(synce_status);
+    halmplane_get_gnss_status(gnss_status);
+}
 
-// void test_MplaneDelayMgmt()
-// {
-//     std::cout << "test_MplaneDelayMgmt ...." << std::endl;
-//     o_ru_delay_management_s* ru_delay_mgmt;
+void test_MplaneDelayMgmt()
+{
+    std::cout << "test_MplaneDelayMgmt ...." << std::endl;
+    o_ru_delay_management_s* ru_delay_mgmt;
 
-//     halmplane_setDUToRUDelayMgmnt(ru_delay_mgmt);
-// }
+    halmplane_setDUToRUDelayMgmnt(ru_delay_mgmt);
+}
 
-// void test_MplaneModuleCapability()
-// {
-//   std::cout << "test_MplaneModuleCapability..." << std::endl;
-//   module_capability_t* mod_capability;
-//   halmplane_setDUToRUModuleCapability(mod_capability);
-// }
+void test_MplaneModuleCapability()
+{
+  std::cout << "test_MplaneModuleCapability..." << std::endl;
+  module_capability_t* mod_capability;
+  halmplane_setDUToRUModuleCapability(mod_capability);
+}
 
-// void test_MplaneSupervision()
-// {
-//     std::cout << "test_MplaneSupervision..." << std::endl;
-//     halmplane_get_cu_supervison_interval();
-//     halmplane_set_cu_supervison_interval(0);
-// }
+void test_MplaneSupervision()
+{
+    std::cout << "test_MplaneSupervision..." << std::endl;
+    halmplane_get_cu_supervison_interval();
+    halmplane_set_cu_supervison_interval(0);
+}
+
+void test_MplaneTransceiver()
+{
+    std::cout << "test_MplaneTransceiver..." << std::endl;
+    port_transceivers_t* transceivers;
+    halmplane_get_port_transceivers(transceivers);
+}
